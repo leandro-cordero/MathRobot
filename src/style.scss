@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Martian+Mono:wght@500;700&family=Roboto+Mono:wght@200;400;500&display=swap');
+
+/* --------------- VARIABLES --------------- */
+// COLORES
+$color-green-100: hsl(163, 31%, 85%);
+$color-green-200: hsl(163, 31%, 65%);
+$color-green-500: #58A690;
+$color-blue-sky: #5DB8D9;
+$color-blue: #083140;
+$color-palePink: #B18D8A;
+$color-pink: #D95D7A;
+$color-pinkLight: hsl(346, 62%, 75%);
+
+// SOMBRAS
+$shadow-pink-sm: 0 4px 12px 0 rgba(217, 93, 122, 0.5);
+$shadow-pink-lg: 0 8px 24px 0 rgba(217, 93, 122, 0.35);
+$shadow-sky-sm: 0 4px 12px 0 rgba(93, 184, 217, 0.5);
+$shadow-green-sm: 0 4px 12px 0 rgba(132, 191, 180, 0.5);
+$shadow-green-lg: 0 8px 32px 0 rgba(132, 191, 180, 0.35);
+/* --------------- VARIABLES --------------- */
+
+
+/* --------------- GLOBALS --------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+}
+body {
+    background: linear-gradient(0deg, #083140 0%, #041820 100%);
+    font-size: 1.6rem;
+    font-family: 'Roboto Mono', monospace;
+}
+h1 {
+    font-family: 'Martian Mono', monospace;
+    color: $color-pink;
+}
+h2, h3, h4 {
+    font-family: 'Martian Mono', monospace;
+}
+a {
+    color: $color-pinkLight;
+    text-decoration: none;
+    display: block;
+}
+.hidden {
+    display: none;
+}
+/* --------------- GLOBALS --------------- */
+
+
+/* --------------- CANVAS --------------- */
+.webgl {
+    position: fixed;
+    top: 0;
+    left: 0;
+    outline: none;
+    z-index: -1;
+}
+/* --------------- CANVAS --------------- */
+
+
+/* --------------- HEADER --------------- */
+header {
+    width: 100%;
+    font-size: 1.2rem;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        
+        #menuBtn {
+            cursor: pointer;
+            background-color: transparent;
+            border: 2px solid $color-pink;
+            border-radius: 8px;
+            margin: 16px;
+            padding: 12px;
+            position: relative;
+            backdrop-filter: blur(4px);
+
+            #line1, #line2, #line3 {
+                height: 2px;
+                width: 20px;
+                border-radius: 10px;
+                background-color: $color-pink;
+            }
+            #line2 {
+                margin-top: 4px;
+            }
+            #line3 {
+                margin-top: 4px;
+                
+            }
+            &:hover {
+                box-shadow: $shadow-pink-sm;
+            }
+        }
+        #menu {
+            list-style: none;
+            padding: 0 16px;
+            text-align: end;
+            backdrop-filter: blur(4px);
+            width: 100%;
+            border-radius: 8px;
+            animation: growDown 300ms ease-in-out forwards;
+            transform-origin: top center;
+            
+            li {
+                padding: 12px;
+                border-bottom: 1px solid $color-palePink;
+                a {
+                    text-transform: uppercase;
+                    border-radius: 4px;
+                }
+                &:last-of-type {
+                    border-bottom: none;
+                }
+                &:hover {
+                    a {
+                        color: $color-pink;
+                    }
+                }
+            }
+        }
+    }
+}
+/* --------------- HEADER --------------- */
+
+
+/* --------------- SECCIONES --------------- */
+main {
+    padding-left: 10%;
+    padding-right: 10%;
+    .section {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .subtitle {
+            font-size: 1.8rem;
+            color: hsl(163, 31%, 80%);
+
+            strong {
+                animation: blink 600ms linear;
+                animation-iteration-count: infinite;
+            }
+        }
+        h2 {
+            font-size: 2.4rem;
+            color: $color-green-500;
+            text-transform: uppercase;
+        }
+        .section_container {
+            display: flex;
+            gap: 2.4rem;
+            padding: 2.8rem 0;
+            overflow-x: auto;
+
+            .section_container_card {
+                border: 1px solid $color-green-500;
+                border-radius: 16px;
+                backdrop-filter: blur(4px);
+                background-color: rgba($color: $color-blue, $alpha: 0.35);
+                padding: 24px;
+
+                .card_header {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.8rem;
+                    margin-bottom: 1.6rem;
+                    
+                    h3 {
+                        font-size: 2rem;
+                        color: $color-green-500;
+                    }
+                }
+
+                .card_body {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.8rem;
+                    color: $color-green-100;
+                    font-size: 1.4rem;
+
+                    input {
+                        font-size: 1.4rem;
+                        padding: 12px;
+                        border: none;
+                        border-radius: 8px;
+                        background: $color-blue;
+                        color: white;
+                        text-align: center;
+                        
+                        &::placeholder {
+                            color: rgba($color: white, $alpha: 0.5);
+                        }
+                        &:focus {
+                            outline: 2px solid $color-pink;
+                        }
+                    }
+                    button {
+                        font-size: 1.4rem;
+                        padding: 12px;
+                        border: none;
+                        border-radius: 8px;
+                        background: $color-pink;
+                        color: white;
+                        opacity: 0.5;
+                        cursor: pointer;
+                    }
+                    .card_body_inputbtn {
+                        position: relative;
+
+                        button {
+                            position: absolute;
+                            top: 12px;
+                            right: 8px;
+                            background: transparent;
+                            padding: 0;
+                        }
+                    }
+                }
+
+                &:hover {
+                    border-color: #D95D7A;
+                    box-shadow: $shadow-pink-lg;
+
+                    h3 {
+                        color: $color-pink;
+                    }
+                    button {
+                        opacity: 1;
+                    }
+                }
+            }
+        }        
+    }
+
+    .modal-dsc {
+        max-width: 100%;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        background-color: rgba($color: $color-blue, $alpha: 0.65);
+        backdrop-filter: blur(4px);
+        width: 100vw;
+        height: 100vh;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10%;
+        text-align: center;
+
+        h3 {
+            color: $color-green-200;
+            font-size: 1.6rem;
+            margin-bottom: 2.4rem;
+            text-wrap: balance;
+        }
+        .dsc_container {
+            max-width: 100%;
+            .dsc_card {
+                padding: 16px;
+                margin-bottom: 8px;
+                border: 1px solid $color-green-100;
+                border-radius: 12px;
+                font-size: 1.4rem;
+                color: $color-green-100;
+            }
+        }
+        button {
+            margin-top: 3.2rem;
+            display: flex;
+            justify-content: center;
+            padding: 1.6rem;
+            width: 50%;
+            border-radius: 8px;
+            border: none;
+            background-color: $color-pink;
+            color: white;
+        }
+    }
+}
+/* --------------- SECCIONES --------------- */
+
+
+/* --------------- FOOTER --------------- */
+footer {
+    text-align: center;
+    font-size: 1.2rem;
+    color: rgba($color: $color-pinkLight, $alpha: 0.65);
+    padding: 2rem;
+
+    p {
+        font-weight: 200;
+        margin-bottom: 1.2rem;
+        span {
+            font-weight: 500;
+        }
+    }    
+    ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 1.6rem;
+        
+        li {
+            a {
+                display: flex;
+                align-items: center;
+                gap: 0.4rem;
+            }
+        }
+    }
+}
+/* --------------- FOOTER --------------- */
+
+
+/* --------------- ANIMACIONES --------------- */
+@keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    100% {
+        transform: scaleY(1)
+    }
+}
+/* --------------- ANIMACIONES --------------- */
+
+
+/* --------------- MEDIA QUERIES --------------- */
+// TABLET
+@media (min-width: 600px) {
+    header {
+        nav {
+            #menuBtn {
+                display: none;
+            }
+            #menu {
+                display: flex;
+                justify-content: center;
+                padding: 16px;
+
+                li {
+                    padding: 12px;
+                    border-bottom: none;
+                    &:hover, &:active {
+                        border-bottom: 1px solid $color-palePink;
+                    }
+                }
+            }
+        }
+    }
+}
+// DESKTOP
+@media (min-width: 920px) {
+    main {
+        .section {
+            .section_container {
+                max-width: 80%;
+            }        
+        }
+    }
+}
+/* --------------- MEDIA QUERIES --------------- */
