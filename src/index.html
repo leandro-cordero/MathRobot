@@ -4,7 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math.Robot</title>
+    <meta name="description" content="I am here to make your math homework easier"/>
+    <meta name="keywords" content="math, homework, geometric, figure, perimeter, area, percentage, median, arithmetic, average"/>
+    <meta name="author" content="Leandro Cordero" />
+    <meta name="copyright" content="Leandro Cordero" />
+    <meta name="robots" content="index,follow" />
+
     <link rel="stylesheet" href="./style.scss">
+
+    <script type="module" src="./figuras.js"></script>
+    <script type="module" src="./descuentos.js"></script>
+    <script type="module" src="./promedio.js"></script>
 </head>
 <body>
     <canvas class="webgl"></canvas>
@@ -41,203 +51,215 @@
 
         <section class="section" id="2">
             <h2>GEOMETRIC FIGURES</h2>
-            <div class="section_container">
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <img class="icono_figura" src="icons/circle.png" alt="figura_circulo"/>
-                        <h3>Circle</h3>
+            <div class="section_maskBox">
+                <div class="section_container">
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <img class="icono_figura" src="icons/circle.png" alt="figura_circulo"/>
+                            <h3>Circle</h3>
+                        </div>
+                        <form class="card_body">
+                            <label for="InputCirculo">
+                                What is the size of the radius?
+                            </label>
+                            <input id="InputCirculo" type="number" placeholder="Radius"/>
+                            <button type="button" onclick="calcularPerimetroCirculo()">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaCirculo()">AREA</button>
+                        </form>
                     </div>
-                    <form class="card_body">
-                        <label for="InputCirculo">
-                            What is the size of the radius?
-                        </label>
-                        <input id="InputCirculo" type="number" placeholder="Radius"/>
-                        <button type="button" onclick="calcularPerimetroCirculo()">PERIMETER</button>
-                        <button type="button" onclick="calcularAreaCirculo()">AREA</button>
-                    </form>
-                </div>
-                
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <img class="icono_figura" src="/icons/cuadrado.png" alt="cuadrado"/>
-                        <h3>Square</h3>
+                    
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <img class="icono_figura" src="/icons/cuadrado.png" alt="cuadrado"/>
+                            <h3>Square</h3>
+                        </div>
+                        <form class="card_body">
+                            <label for="InputCuadrado">What is the size of the edges?</label>
+                            <input id="InputCuadrado" type="number" placeholder="Tamaño de aristas" name="edge_lenght"/>
+                            <button type="button" onclick="calcularPerimetroCuadrado()">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaCuadrado()">AREA</button>
+                        </form>
                     </div>
-                    <form class="card_body">
-                        <label for="InputCuadrado">What is the size of the edges?</label>
-                        <input id="InputCuadrado" type="number" placeholder="Tamaño de aristas" name="edge_lenght"/>
-                        <button type="button" onclick="calcularPerimetroCuadrado()">PERIMETER</button>
-                        <button type="button" onclick="calcularAreaCuadrado()">AREA</button>
-                    </form>
-                </div>
-    
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <img class="icono_figura" src="icons/rectangular.png" alt="figura_cuadrado"/>
-                        <h3>Rectangle</h3>
+        
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <img class="icono_figura" src="icons/rectangular.png" alt="figura_cuadrado"/>
+                            <h3>Rectangle</h3>
+                        </div>
+                        <form class="card_body">
+                            <label>
+                                What are the sizes of the edges?
+                            </label>
+                            <input id="InputRect1" type="number" placeholder="Base"/>
+                            <input id="InputRect2" type="number" placeholder="Height"/>
+                            <button type="button" onclick="calcularPerimetroRectangulo()">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaRectangulo()">AREA</button>
+                        </form>
                     </div>
-                    <form class="card_body">
-                        <label>
-                            What are the sizes of the edges?
-                        </label>
-                        <input id="InputRect1" type="number" placeholder="Base"/>
-                        <input id="InputRect2" type="number" placeholder="Height"/>
-                        <button type="button" onclick="calcularPerimetroRectangulo()">PERIMETER</button>
-                        <button type="button" onclick="calcularAreaRectangulo()">AREA</button>
-                    </form>
-                </div>
-    
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <img class="icono_figura" src="icons/triangle.png" alt="figura_triangulo"/>
-                        <h3>Triangle</h3>
+        
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <img class="icono_figura" src="icons/triangle.png" alt="figura_triangulo"/>
+                            <h3>Triangle</h3>
+                        </div>
+                        <form class="card_body">
+                            <label>
+                                What is the triangle's type?
+                            </label> 
+                            <p> <input type="radio" name="check" value="eqis"/> Equilateral / Isosceles Triangle </p> 
+                            <p> <input type="radio" name="check" value="rect"/> Right Triangle </p> 
+                            <p> <input type="radio" name="check" value="otro"/> Other Triangle </p> 
+                            <label>
+                                What are the sizes of the edges?
+                            </label>            
+                            <input id="InputTriangulo1" type="number" placeholder="Side 1"/>
+                            <input id="InputTriangulo2" type="number" placeholder="Side 2 or height"/>
+                            <input id="InputTriangulo3" type="number" placeholder="Base"/>
+                            <button type="button" onclick="calcularPerimetroTriangulo()">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaTriangulo()">AREA</button>
+                        </form>
                     </div>
-                    <form class="card_body">
-                        <label>
-                            What is the triangle's type?
-                        </label> 
-                        <p> <input type="radio" name="check" value="eqis"/> Equilateral / Isosceles Triangle </p> 
-                        <p> <input type="radio" name="check" value="rect"/> Right Triangle </p> 
-                        <p> <input type="radio" name="check" value="otro"/> Other Triangle </p> 
-                        <label>
-                            What are the sizes of the edges?
-                        </label>            
-                        <input id="InputTriangulo1" type="number" placeholder="Side 1"/>
-                        <input id="InputTriangulo2" type="number" placeholder="Side 2 or height"/>
-                        <input id="InputTriangulo3" type="number" placeholder="Base"/>
-                        <button type="button" onclick="calcularPerimetroTriangulo()">PERIMETER</button>
-                        <button type="button" onclick="calcularAreaTriangulo()">AREA</button>
-                    </form>
-                </div>
-    
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <img class="icono_figura" src="icons/rhombus.png" alt="figura_rombo"/>
-                        <h3>Rhombus</h3>
+        
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <img class="icono_figura" src="icons/rhombus.png" alt="figura_rombo"/>
+                            <h3>Rhombus</h3>
+                        </div>
+                        <form class="card_body">
+                            <label>
+                                What is the size of the edges?
+                            </label>
+                            <input id="InputLado" type="number" placeholder="Edge"/> 
+                            <input id="InputAngulo" type="number" placeholder="Angle"/>          
+                            <button type="button" onclick="calcularPerimetroRombo()">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaAngulo()">AREA: edge & angle</button>
+                            <input id="InputDiagonal1" type="number" placeholder="Diagonal A"/>   
+                            <input id="InputDiagonal2" type="number" placeholder="Diagonal B"/>   
+                            <button type="button" onclick="calcularAreaDiagonal()">AREA: diagonals</button>
+                        </form>
                     </div>
-                    <form class="card_body">
-                        <label>
-                            What is the size of the edges?
-                        </label>
-                        <input id="InputLado" type="number" placeholder="Edge"/> 
-                        <input id="InputAngulo" type="number" placeholder="Angle"/>          
-                        <button type="button" onclick="calcularPerimetroRombo()">PERIMETER</button>
-                        <button type="button" onclick="calcularAreaAngulo()">AREA: edge & angle</button>
-                        <input id="InputDiagonal1" type="number" placeholder="Diagonal A"/>   
-                        <input id="InputDiagonal2" type="number" placeholder="Diagonal B"/>   
-                        <button type="button" onclick="calcularAreaDiagonal()">AREA: diagonals</button>
-                    </form>
-                </div>
-    
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <img class="icono_figura" src="icons/parallelogram.png" alt="figura_paralelogramo"/>
-                        <h3>Parallelogram</h3>
+        
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <img class="icono_figura" src="icons/parallelogram.png" alt="figura_paralelogramo"/>
+                            <h3>Parallelogram</h3>
+                        </div>
+                        <form class="card_body">
+                            <label>
+                                What are the size of the edges?
+                            </label>
+                            <input id="InputLadoA" type="number" placeholder="Side A or base"/> 
+                            <input id="InputLadoB" type="number" placeholder="Side B"/>    
+                            <input id="InputAnguloR" type="number" placeholder="Angle"/>      
+                            <button type="button" onclick="calcularPerimetroRomboide()">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaAnguloRomboide()">AREA: edge & angle</button>
+                            <input id="InputAltura" type="number" placeholder="Height"/>              
+                            <button type="button" onclick="calcularAreaAlturaRomboide()">AREA: edge & height</button>
+                        </form>
                     </div>
-                    <form class="card_body">
-                        <label>
-                            What are the size of the edges?
-                        </label>
-                        <input id="InputLadoA" type="number" placeholder="Side A or base"/> 
-                        <input id="InputLadoB" type="number" placeholder="Side B"/>    
-                        <input id="InputAnguloR" type="number" placeholder="Angle"/>      
-                        <button type="button" onclick="calcularPerimetroRomboide()">PERIMETER</button>
-                        <button type="button" onclick="calcularAreaAnguloRomboide()">AREA: edge & angle</button>
-                        <input id="InputAltura" type="number" placeholder="Height"/>              
-                        <button type="button" onclick="calcularAreaAlturaRomboide()">AREA: edge & height</button>
-                    </form>
                 </div>
+
+                <div class="section_mask-1"></div>
             </div>
         </section>
 
         <section class="section" id="3">
             <h2>Discounts</h2>
 
-            <div class="section_container">
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <h3>Calculate the final price if you have any store's discount coupon</h3>
-                    </div>
-                    <form class="card_body">
-                        <label for="InputPrecio2">Write the total ammount</label>
-                        <input id="InputPrecio2" type="number" placeholder="Total ammount"/>
-                        
-                        <label for="InputCupon">Write the discount coupon code</label>
-                        <div class="card_body_inputbtn">
-                            <input id="InputCupon" type="text" placeholder="Coupon's code"/>
-                            <button  id="modal-open">
-                                <img src="/icons/icon-info.png" alt="info">
-                            </button>
+            <div class="section_maskBox">
+                <div class="section_container">
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <h3>Calculate the final price if you have any store's discount coupon</h3>
                         </div>
-                        
-                        <button type="button" onclick="precioDescontadoCupon()">CALCULATE: Final Ammount</button>
-                    </form>
-                    <p id="ResultadoCupon"></p>
-                </div>
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <h3>Calculate the final ammount you would have to pay for your product</h3>
+                        <form class="card_body">
+                            <label for="InputPrecio2">Write the total ammount</label>
+                            <input id="InputPrecio2" type="number" placeholder="Total ammount"/>
+                            
+                            <label for="InputCupon">Write the discount coupon code</label>
+                            <div class="card_body_inputbtn">
+                                <input id="InputCupon" type="text" placeholder="Coupon's code"/>
+                                <button  id="modal-open">
+                                    <img src="/icons/icon-info.png" alt="info">
+                                </button>
+                            </div>
+                            
+                            <button type="button" onclick="precioDescontadoCupon()">CALCULATE: Final Ammount</button>
+                        </form>
+                        <p id="ResultadoCupon"></p>
                     </div>
-                    <form class="card_body">
-                        <label for="InputPrecio">Write the total cost</label>
-                        <input id="InputPrecio" type="number" placeholder="Total ammount"/>
-                        
-                        <label for="InputDescuento">Write the discount percentage</label>
-                        <input id="InputDescuento" type="number" placeholder="Discount"/>
-                        
-                        <button type="button" onclick="precioDescontado()">CALCULATE: Final Cost</button>
-                    </form>
-                    <p id="Resultado"></p>
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <h3>Calculate the final ammount you would have to pay for your product</h3>
+                        </div>
+                        <form class="card_body">
+                            <label for="InputPrecio">Write the total cost</label>
+                            <input id="InputPrecio" type="number" placeholder="Total ammount"/>
+                            
+                            <label for="InputDescuento">Write the discount percentage</label>
+                            <input id="InputDescuento" type="number" placeholder="Discount"/>
+                            
+                            <button type="button" onclick="precioDescontado()">CALCULATE: Final Cost</button>
+                        </form>
+                        <p id="Resultado"></p>
+                    </div>
                 </div>
+
+                <div class="section_mask-2"></div>
             </div>
         </section>
 
         <section class="section" id="4">
             <h2>Averages</h2>
 
-            <div class="section_container">
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <h3>Calculate the Arithmetic Median</h3>
+            <div class="section_maskBox">
+                <div class="section_container">
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <h3>Calculate the Arithmetic Median</h3>
+                        </div>
+                        <form class="card_body">
+                            <label for="InputNumero1">Write the numbers you need and add them one by one</label>
+                            <input id="InputNumero1" type="number" placeholder="New Number"/>
+                            
+                            <button type="button" onclick="onclickSumarNumero()">Add number</button>
+                            <button type="button" onclick="onclickMediaAritmetica()">CALCULATE: Arithmetic Median</button>
+                        </form>
+                
+                        <p id="ResultadoNumerosA"></p>
+                        <p id="ResultadoMediaAritmetica"></p>
                     </div>
-                    <form class="card_body">
-                        <label for="InputNumero1">Write the numbers you need and add them one by one</label>
-                        <input id="InputNumero1" type="number" placeholder="New Number"/>
-                        
-                        <button type="button" onclick="onclickSumarNumero()">Add number</button>
-                        <button type="button" onclick="onclickMediaAritmetica()">CALCULATE: Arithmetic Median</button>
-                    </form>
-            
-                    <p id="ResultadoNumerosA"></p>
-                    <p id="ResultadoMediaAritmetica"></p>
-                </div>
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <h3>Calculate the Median</h3>
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <h3>Calculate the Median</h3>
+                        </div>
+                        <form class="card_body">
+                            <label for="InputNumero2">Write the numbers you need</label>
+                            <input id="InputNumero2" type="number" placeholder="New Number"/>
+                                        
+                            <button type="button" onclick="onclickMedia()">Add & calculate Median</button>
+                        </form>
+                
+                        <p id="ResultadoNumerosB"></p>
+                        <p id="ResultadoMedia"></p>
                     </div>
-                    <form class="card_body">
-                        <label for="InputNumero2">Write the numbers you need</label>
-                        <input id="InputNumero2" type="number" placeholder="New Number"/>
-                                    
-                        <button type="button" onclick="onclickMedia()">Add & calculate Median</button>
-                    </form>
-            
-                    <p id="ResultadoNumerosB"></p>
-                    <p id="ResultadoMedia"></p>
-                </div>
-                <div class="section_container_card">
-                    <div class="card_header">
-                        <h3>Calculate the Mode or Modal Value</h3>
+                    <div class="section_container_card">
+                        <div class="card_header">
+                            <h3>Calculate the Mode or Modal Value</h3>
+                        </div>
+                        <form class="card_body">
+                            <label for="InputNumero3">Write all the numbers you need with a space " " between</label>
+                            <input id="InputNumero3" type="text" placeholder="New Number"/>
+                                        
+                            <button type="button" onclick="onclickModa()">CALCULATE: Mode</button>
+                        </form>
+                
+                        <p id="ResultadoNumerosC"></p>
+                        <p id="ResultadoModa"></p>
                     </div>
-                    <form class="card_body">
-                        <label for="InputNumero3">Write all the numbers you need with a space " " between</label>
-                        <input id="InputNumero3" type="text" placeholder="New Number"/>
-                                    
-                        <button type="button" onclick="onclickModa()">CALCULATE: Mode</button>
-                    </form>
-            
-                    <p id="ResultadoNumerosC"></p>
-                    <p id="ResultadoModa"></p>
                 </div>
+
+                <div class="section_mask-3"></div>
             </div>
         </section>
 
@@ -292,8 +314,5 @@
 
     <script type="module" src="./script.js"></script>
     <script type="module" src="./three.js"></script>
-    <script type="module" src="./figuras.js"></script>
-    <script type="module" src="./descuentos.js"></script>
-    <script type="module" src="./promedio.js"></script>
 </body>
 </html>

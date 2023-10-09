@@ -20,12 +20,19 @@ const sizes = {
     height: window.innerHeight
 }
 
+// POSICION
+let positionX = ((sizes.width / 2) * 2) / (1440 / 2)
+
 window.addEventListener('resize', () =>
 {
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
 
+    // CALCULO PARA RESPONSIVE
+    positionX = ((sizes.width / 2) * 2) / (1440 / 2) 
+    robot.position.x = figuras.position.x = descuentos.position.x = promedios.position.x = positionX
+    
     // Update camera
     camera.aspect = sizes.width / sizes.height
     camera.updateProjectionMatrix()
@@ -33,6 +40,7 @@ window.addEventListener('resize', () =>
     // Update renderer
     renderer.setSize(sizes.width, sizes.height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
 })
 /* ------------------------------ RESIZE ------------------------------ */
 
@@ -75,6 +83,16 @@ const robot = new THREE.Group()
         new THREE.BoxGeometry(1, 1, 1),
         mainMaterialPink
     )
+    // Orejas
+    const robotEar1 = new THREE.Mesh(
+        new THREE.CylinderGeometry( 0.15, 0.25, 0.25, 32 ),
+        mainMaterialPink
+    )
+    const robotEar2 = robotEar1.clone()
+        robotEar1.position.x = -0.5
+        robotEar2.position.x = 0.5
+        robotEar1.rotation.z = Math.PI * 0.5
+        robotEar2.rotation.z = -Math.PI * 0.5
     // Ojos
     const robotEye1 = new THREE.Mesh(
         new THREE.CylinderGeometry( 0.15, 0.10, 0.25, 32 ),
@@ -129,7 +147,7 @@ const robot = new THREE.Group()
         robotWiresBall2.position.x = 0.25
         robotWiresBall1.position.y = robotWiresBall2.position.y = 1.3
 
-robot.add(robotHead, robotEye1, robotEye2, robotMouth, robotWires, robotWiresBall1, robotWiresBall2)
+robot.add(robotHead, robotEye1, robotEye2, robotMouth, robotWires, robotWiresBall1, robotWiresBall2, robotEar1, robotEar2)
 
 // FIG GEOMETRICAS
 const figuras = new THREE.Group()
@@ -282,10 +300,9 @@ robot.position.y = - objectsDistance * 0
 figuras.position.y = - objectsDistance * 1
 descuentos.position.y = - objectsDistance * 2
 promedios.position.y = - objectsDistance * 3
-    // CALCULO PARA RESPONSIVE
-    let positionX = ((sizes.width / 2) * 2.25) / (1440 / 2)
+    
 robot.position.x = figuras.position.x = descuentos.position.x = promedios.position.x = positionX
-console.log(positionX)
+
 
 // AÑADIR
 scene.add(robot, figuras, descuentos, promedios)
@@ -302,11 +319,24 @@ directionalLight.position.set(1, 1, 0)
 
 // LUZ ROBOT
 const robotLight = new THREE.PointLight( 0xff0000, 1, 10 )
-robotLight.position.x = -1
-robotLight.position.y = 1
-robotLight.position.z = 2.5
 
-scene.add(directionalLight, robotLight)
+// LUZ FIGURAS
+const generalPointLight_1 = new THREE.PointLight( 0x0000ff, 0.5, 8 )
+
+// LUZ DESCUENTOS
+const generalPointLight_2 = generalPointLight_1.clone()
+
+// LUZ PROMEDIOS
+const generalPointLight_3 = generalPointLight_1.clone()
+
+    robotLight.position.x = generalPointLight_1.position.x = -1
+    robotLight.position.z = generalPointLight_1.position.z = 2.5
+    robotLight.position.y = 1
+    generalPointLight_1.position.y = 1 - (objectsDistance * 2)
+    generalPointLight_2.position.y = 1 - (objectsDistance * 3)
+    generalPointLight_3.position.y = 1 - (objectsDistance * 4)
+
+scene.add(directionalLight, robotLight, generalPointLight_1, generalPointLight_2, generalPointLight_3)
 /* ------------------------------ LUCES ------------------------------ */
 
 

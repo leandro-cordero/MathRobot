@@ -1,16 +1,16 @@
-# Three.js Journey
+# Math.Robot
 
-## Setup
-Download [Node.js](https://nodejs.org/en/download/).
-Run this followed commands:
+## Leandro Cordero
+Watch this live at:
+
 
 ``` bash
-# Install dependencies (only the first time)
-npm install
-
-# Run the local server at localhost:8080
-npm run dev
-
-# Build for production in the dist/ directory
-npm run build
+# Technologies:
+HTML
+CSS SASS
+Three JS
+Javascript
+Node JS
+Vite
+Vercel
 ```

@@ -15,8 +15,11 @@ $color-pinkLight: hsl(346, 62%, 75%);
 $shadow-pink-sm: 0 4px 12px 0 rgba(217, 93, 122, 0.5);
 $shadow-pink-lg: 0 8px 24px 0 rgba(217, 93, 122, 0.35);
 $shadow-sky-sm: 0 4px 12px 0 rgba(93, 184, 217, 0.5);
-$shadow-green-sm: 0 4px 12px 0 rgba(132, 191, 180, 0.5);
+$shadow-green-sm: 0 4px 12px 0 rgba(132, 191, 180, 0.35);
 $shadow-green-lg: 0 8px 32px 0 rgba(132, 191, 180, 0.35);
+
+// TRANSICION
+
 /* --------------- VARIABLES --------------- */
 
 
@@ -29,10 +32,24 @@ $shadow-green-lg: 0 8px 32px 0 rgba(132, 191, 180, 0.35);
 html {
     font-size: 62.5%;
 }
+::-webkit-scrollbar{
+	width:10px;
+	height:10px;
+}
+
+::-webkit-scrollbar-track{
+	background:hsl(196, 78%, 07%)
+}
+
+::-webkit-scrollbar-thumb{
+	background:$color-blue;
+	border-radius:10px;
+}
 body {
     background: linear-gradient(0deg, #083140 0%, #041820 100%);
     font-size: 1.6rem;
     font-family: 'Roboto Mono', monospace;
+    overflow: overlay;
 }
 h1 {
     font-family: 'Martian Mono', monospace;
@@ -116,9 +133,11 @@ header {
             li {
                 padding: 12px;
                 border-bottom: 1px solid $color-palePink;
+                transition: all 600ms ease-in-out;
                 a {
                     text-transform: uppercase;
                     border-radius: 4px;
+                    transition: all 300ms ease-in-out;
                 }
                 &:last-of-type {
                     border-bottom: none;
@@ -152,7 +171,7 @@ main {
         }
         .subtitle {
             font-size: 1.8rem;
-            color: hsl(163, 31%, 80%);
+            color: hsl(346, 62%, 95%);
 
             strong {
                 animation: blink 600ms linear;
@@ -247,7 +266,19 @@ main {
                     }
                 }
             }
-        }        
+        }
+        .section_maskBox {
+            position: relative;
+            .section_mask-1, .section_mask-2, .section_mask-3 {
+                width: 50px;
+                height: calc(100% - 2.8rem - 2.8rem - 9px);
+                background: linear-gradient(90deg, #08314000 0%, hsl(196, 78%, 07%) 100%);
+                position: absolute;
+                right: 0;
+                top: 0;
+                margin-top: 2.8rem;
+            }
+        }
     }
 
     .modal-dsc {
@@ -339,6 +370,12 @@ footer {
     100% { opacity: 0; }
 }
 
+@keyframes borderBlink {
+    0% { border-bottom: 2px solid rgba($color:white, $alpha: 0.5); }
+    50% { border-bottom: none; }
+    100% { border-bottom: 2px solid rgba($color:white, $alpha: 0.5); }
+}
+
 @keyframes growDown {
     0% {
         transform: scaleY(0)
@@ -367,21 +404,85 @@ footer {
                     padding: 12px;
                     border-bottom: none;
                     &:hover, &:active {
-                        border-bottom: 1px solid $color-palePink;
+                        animation: borderBlink 700ms linear;
+                        animation-iteration-count: infinite;
+                        a {
+                            color: white;
+                        }
                     }
                 }
+            }
+        }
+    }
+    main {
+        .section {
+            h1 {
+                font-size: 4.8rem;
+            }
+            h2 {
+                font-size: 2.8rem;
             }
         }
     }
 }
 // DESKTOP
 @media (min-width: 920px) {
+    header {
+        font-size: 1.4rem;
+    }
     main {
         .section {
-            .section_container {
+            h1 {
+                font-size: 8rem;
+            }
+            .section_maskBox {
                 max-width: 80%;
             }        
         }
+    }
+    footer {
+        p {
+            transition: all 300ms ease-in-out;
+            &:hover {
+                font-weight: 300;
+                color: white;
+            }
+        }
+        ul {
+            li {
+                transition: all 600ms ease-in-out;
+                padding: 0.8rem;
+                &:hover, &:active {
+                    animation: borderBlink 700ms linear;
+                    animation-iteration-count: infinite;
+                    a {
+                        color: white;
+                        transition: all 300ms ease-in-out;
+                        img {
+                            transition: all 600ms ease-in-out;
+                            filter: grayscale(1) brightness(10);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// MASKs
+@media (min-width: 640px) {
+    .section_mask-2 {
+        display: none;
+    }
+}
+@media (min-width: 1218px) {
+    .section_mask-3 {
+        display: none;
+    }
+}
+@media (min-width: 2518px) {
+    .section_mask-1 {
+        display: none;
     }
 }
 /* --------------- MEDIA QUERIES --------------- */
