@@ -29,6 +29,11 @@ function arraySumarNumeros(numero, array){
 
 //Añadiendo cantidades al Array del HTML
 function onclickSumarNumero(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#arithmeticMedianResult");
+    cardFooter.style.display = "block";
+
+    // Logica
     const inputNumero1 = Number(document.getElementById("InputNumero1").value);
 
     const sumarInput = arraySumarNumeros(inputNumero1, arrayNumerosAM);
@@ -42,7 +47,8 @@ function onclickSumarNumero(){
 function onclickMediaAritmetica(){
     const mediaAritmetica = calcularMediaAritmetica(arrayNumerosAM);
     const resultado = document.getElementById("ResultadoMediaAritmetica");
-    resultado.innerText = "The arithmetic median of all numbers introduced is " + mediaAritmetica;
+    
+    resultado.innerText = "The arithmetic median is: " + mediaAritmetica;
 }
 
 //____________________
@@ -76,6 +82,11 @@ function mitadLista(array){
 
 //Añadiendo cantidades al Array del HTML
 function onclickMedia(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#medianResult");
+    cardFooter.style.display = "block";
+
+    // Logica
     const inputNumero2 = Number(document.getElementById("InputNumero2").value);
     const resultadoArray = document.getElementById("ResultadoNumerosB");
     const resultadoMediana = document.getElementById("ResultadoMedia"); 
@@ -96,7 +107,7 @@ function onclickMedia(){
     };
 
     resultadoArray.innerText = "Numbers entered: " + arrayOrdenado; 
-    resultadoMediana.innerText = "Numbers entered: " + mediana;
+    resultadoMediana.innerText = "The median is: " + mediana;
     return sumarInput;         
 } 
 
@@ -104,6 +115,11 @@ function onclickMedia(){
 // MODA
 //____________________
 function onclickModa(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#modalResult");
+    cardFooter.style.display = "block";
+
+    // Logica
     const inputNumeros = document.getElementById("InputNumero3").value;
     const arrayInput = inputNumeros.split(" ");
     const listaInputs = {};    

@@ -195,6 +195,7 @@ main {
                 backdrop-filter: blur(4px);
                 background-color: rgba($color: $color-blue, $alpha: 0.35);
                 padding: 24px;
+                min-width: 290px;
 
                 .card_header {
                     display: flex;
@@ -215,7 +216,29 @@ main {
                     color: $color-green-100;
                     font-size: 1.4rem;
 
-                    input {
+                    .card_body_option {
+                        display: flex;
+                        align-items: flex-start;
+                        gap: 0.8rem;
+
+                        input[type=radio] {
+                            margin-top: 2px;
+                            appearance: none;
+                            background-color: $color-blue;
+                            border-radius: 50%;
+                            min-width: 15px;
+                            height: 15px;
+                            border: 1px solid $color-green-100;
+                            &:checked {
+                                background-color: $color-pinkLight;
+                                border-color: $color-palePink;
+                            }
+                        }
+                        &:last-of-type {
+                            margin-bottom: 0.8rem;
+                        }
+                    }
+                    input[type=number], input[type=text] {
                         font-size: 1.4rem;
                         padding: 12px;
                         border: none;
@@ -223,6 +246,7 @@ main {
                         background: $color-blue;
                         color: white;
                         text-align: center;
+                        width: 100%;
                         
                         &::placeholder {
                             color: rgba($color: white, $alpha: 0.5);
@@ -254,6 +278,24 @@ main {
                     }
                 }
 
+                .card_footer {
+                    margin-top: 1.2rem;
+                    padding: 0.8rem;
+                    text-align: center;
+                    border-radius: 8px;
+                    border: 1px solid $color-pink;
+                    background: rgba($color: $color-palePink, $alpha: 0.15);
+                    color: hsl(346, 62%, 95%);
+                    display: none;
+                    font-size: 1.4rem;
+
+                    p {
+                        &:first-of-type {
+                            margin-bottom: 0.4rem;
+                        }
+                     }
+                }
+
                 &:hover {
                     border-color: #D95D7A;
                     box-shadow: $shadow-pink-lg;
@@ -264,6 +306,9 @@ main {
                     button {
                         opacity: 1;
                     }
+                }
+                &:last-of-type {
+                    margin-right: 60px;
                 }
             }
         }
@@ -281,6 +326,7 @@ main {
         }
     }
 
+    // MODAL
     .modal-dsc {
         max-width: 100%;
         position: fixed;
@@ -325,6 +371,7 @@ main {
             border: none;
             background-color: $color-pink;
             color: white;
+            cursor: pointer;
         }
     }
 }

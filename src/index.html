@@ -12,10 +12,6 @@
     <link rel="icon" type="image/ico" href="/icons/robot.ico"/>
 
     <link rel="stylesheet" href="./style.scss">
-
-    <script type="module" src="./figuras.js"></script>
-    <script type="module" src="./descuentos.js"></script>
-    <script type="module" src="./promedio.js"></script>
 </head>
 <body>
     <canvas class="webgl"></canvas>
@@ -67,6 +63,10 @@
                             <button type="button" onclick="calcularPerimetroCirculo()">PERIMETER</button>
                             <button type="button" onclick="calcularAreaCirculo()">AREA</button>
                         </form>
+                        <div class="card_footer" id="circuloResult">
+                            <p id="circuloPerimetro"></p>
+                            <p id="circuloArea"></p>
+                        </div>
                     </div>
                     
                     <div class="section_container_card">
@@ -80,6 +80,10 @@
                             <button type="button" onclick="calcularPerimetroCuadrado()">PERIMETER</button>
                             <button type="button" onclick="calcularAreaCuadrado()">AREA</button>
                         </form>
+                        <div class="card_footer" id="cuadradoResult">
+                            <p id="cuadradoPerimetro"></p>
+                            <p id="cuadradoArea"></p>
+                        </div>
                     </div>
         
                     <div class="section_container_card">
@@ -96,6 +100,10 @@
                             <button type="button" onclick="calcularPerimetroRectangulo()">PERIMETER</button>
                             <button type="button" onclick="calcularAreaRectangulo()">AREA</button>
                         </form>
+                        <div class="card_footer" id="rectanguloResult">
+                            <p id="rectanguloPerimetro"></p>
+                            <p id="rectanguloArea"></p>
+                        </div>
                     </div>
         
                     <div class="section_container_card">
@@ -106,10 +114,19 @@
                         <form class="card_body">
                             <label>
                                 What is the triangle's type?
-                            </label> 
-                            <p> <input type="radio" name="check" value="eqis"/> Equilateral / Isosceles Triangle </p> 
-                            <p> <input type="radio" name="check" value="rect"/> Right Triangle </p> 
-                            <p> <input type="radio" name="check" value="otro"/> Other Triangle </p> 
+                            </label>
+                            <div class="card_body_option">
+                                <input type="radio" name="check" value="eqis"/>
+                                <span>  Equilateral / Isosceles Triangle </span> 
+                            </div>
+                            <div class="card_body_option">
+                                <input type="radio" name="check" value="rect"/>
+                                <span>Right Triangle</span> 
+                            </div>
+                            <div class="card_body_option">
+                                <input type="radio" name="check" value="otro"/>
+                                <span>Other Triangle</span>
+                            </div>
                             <label>
                                 What are the sizes of the edges?
                             </label>            
@@ -119,6 +136,10 @@
                             <button type="button" onclick="calcularPerimetroTriangulo()">PERIMETER</button>
                             <button type="button" onclick="calcularAreaTriangulo()">AREA</button>
                         </form>
+                        <div class="card_footer" id="trianguloResult">
+                            <p id="trianguloPerimetro"></p>
+                            <p id="trianguloArea"></p>
+                        </div>
                     </div>
         
                     <div class="section_container_card">
@@ -134,9 +155,19 @@
                             <input id="InputAngulo" type="number" placeholder="Angle"/>          
                             <button type="button" onclick="calcularPerimetroRombo()">PERIMETER</button>
                             <button type="button" onclick="calcularAreaAngulo()">AREA: edge & angle</button>
+
+                            <div class="card_footer" id="romboResult_1">
+                                <p id="romboPerimetro"></p>
+                                <p id="romboArea_angle"></p>
+                            </div>
+
                             <input id="InputDiagonal1" type="number" placeholder="Diagonal A"/>   
                             <input id="InputDiagonal2" type="number" placeholder="Diagonal B"/>   
                             <button type="button" onclick="calcularAreaDiagonal()">AREA: diagonals</button>
+
+                            <div class="card_footer" id="romboResult_2">
+                                <p id="romboArea_diagonals"></p>
+                            </div>
                         </form>
                     </div>
         
@@ -154,8 +185,18 @@
                             <input id="InputAnguloR" type="number" placeholder="Angle"/>      
                             <button type="button" onclick="calcularPerimetroRomboide()">PERIMETER</button>
                             <button type="button" onclick="calcularAreaAnguloRomboide()">AREA: edge & angle</button>
+
+                            <div class="card_footer" id="paralelogramoResult_1">
+                                <p id="paralelogramoPerimetro"></p>
+                                <p id="paralelogramoArea_angle"></p>
+                            </div>
+
                             <input id="InputAltura" type="number" placeholder="Height"/>              
                             <button type="button" onclick="calcularAreaAlturaRomboide()">AREA: edge & height</button>
+
+                            <div class="card_footer" id="paralelogramoResult_2">
+                                <p id="paralelogramoArea_height"></p>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -187,7 +228,9 @@
                             
                             <button type="button" onclick="precioDescontadoCupon()">CALCULATE: Final Ammount</button>
                         </form>
-                        <p id="ResultadoCupon"></p>
+                        <div class="card_footer" id="couponResult">
+                            <p id="ResultadoCupon"></p>
+                        </div>
                     </div>
                     <div class="section_container_card">
                         <div class="card_header">
@@ -202,7 +245,9 @@
                             
                             <button type="button" onclick="precioDescontado()">CALCULATE: Final Cost</button>
                         </form>
-                        <p id="Resultado"></p>
+                        <div class="card_footer" id="percentageResult">
+                            <p id="Resultado"></p>
+                        </div>
                     </div>
                 </div>
 
@@ -226,9 +271,10 @@
                             <button type="button" onclick="onclickSumarNumero()">Add number</button>
                             <button type="button" onclick="onclickMediaAritmetica()">CALCULATE: Arithmetic Median</button>
                         </form>
-                
-                        <p id="ResultadoNumerosA"></p>
-                        <p id="ResultadoMediaAritmetica"></p>
+                        <div class="card_footer" id="arithmeticMedianResult">
+                            <p id="ResultadoNumerosA"></p>
+                            <p id="ResultadoMediaAritmetica"></p>
+                        </div>                
                     </div>
                     <div class="section_container_card">
                         <div class="card_header">
@@ -240,9 +286,10 @@
                                         
                             <button type="button" onclick="onclickMedia()">Add & calculate Median</button>
                         </form>
-                
-                        <p id="ResultadoNumerosB"></p>
-                        <p id="ResultadoMedia"></p>
+                        <div class="card_footer" id="medianResult">
+                            <p id="ResultadoNumerosB"></p>
+                            <p id="ResultadoMedia"></p>
+                        </div>                
                     </div>
                     <div class="section_container_card">
                         <div class="card_header">
@@ -254,9 +301,10 @@
                                         
                             <button type="button" onclick="onclickModa()">CALCULATE: Mode</button>
                         </form>
-                
-                        <p id="ResultadoNumerosC"></p>
-                        <p id="ResultadoModa"></p>
+                        <div class="card_footer" id="modalResult">
+                            <p id="ResultadoNumerosC"></p>
+                            <p id="ResultadoModa"></p>
+                        </div>
                     </div>
                 </div>
 
@@ -315,5 +363,8 @@
 
     <script type="module" src="./script.js"></script>
     <script type="module" src="./three.js"></script>
+    <script src="./figuras.js"></script>
+    <script src="./descuentos.js"></script>
+    <script src="./promedio.js"></script>
 </body>
 </html>

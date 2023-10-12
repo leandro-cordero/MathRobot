@@ -9,6 +9,10 @@ function calcularPrecioconDescuento(precio, descuento){
 //________________________________________________________________
 // Introduce el precio y el descuento para obtener un precio final
 function precioDescontado(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#percentageResult");
+    cardFooter.style.display = "block";
+    
     const inputPrecio = document.getElementById("InputPrecio").value;
     const inputDescuento = document.getElementById("InputDescuento").value;
 
@@ -44,6 +48,11 @@ const cupones = [
 ];
 
 function precioDescontadoCupon(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#couponResult");
+    cardFooter.style.display = "block";
+
+    // Logica
     const inputPrecio = document.getElementById("InputPrecio2").value;
     const inputCupon = document.getElementById("InputCupon").value;    
     

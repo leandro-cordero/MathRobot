@@ -76,45 +76,79 @@ function areaCirculo(radio){
 //_____________________________
 // Llamado a cuadrado
 function calcularPerimetroCuadrado() {
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#cuadradoResult");
+    cardFooter.style.display = "block";
+
     const input = document.getElementById("InputCuadrado").value;    
 
     const perimetro = perimetro4LadosIguales(input);
-    alert(perimetro);
+    
+    const resultado = document.getElementById("cuadradoPerimetro");
+    resultado.innerText = "The perimeter is: " + perimetro;
 }
 function calcularAreaCuadrado(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#cuadradoResult");
+    cardFooter.style.display = "block";
+
     const input = document.getElementById("InputCuadrado").value;
     
     const area = areaCuadrado(input);
-    alert(area);
+    
+    const resultado = document.getElementById("cuadradoArea");
+    resultado.innerText = "The area is: " + area;
 }
 
 //Llamado a rectangulo
 function calcularPerimetroRectangulo(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#rectanguloResult");
+    cardFooter.style.display = "block";
+
     const input1 = document.getElementById("InputRect1").value;
     const input2 = document.getElementById("InputRect2").value;
 
     const perimetro = perimetro4Lados2Iguales(input1, input2);
-    alert(perimetro);
+    
+    const resultado = document.getElementById("rectanguloPerimetro");
+    resultado.innerText = "The perimeter is: " + perimetro;
 }
 function calcularAreaRectangulo(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#rectanguloResult");
+    cardFooter.style.display = "block";
+
     const input1 = document.getElementById("InputRect1").value;
     const input2 = document.getElementById("InputRect2").value;
 
     const area = areaBaseAltura(input1, input2);
-    alert(area);
+    
+    const resultado = document.getElementById("rectanguloArea");
+    resultado.innerText = "The area is: " + area;
 }
 
 // Llamado a triangulo
 function calcularPerimetroTriangulo(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#trianguloResult");
+    cardFooter.style.display = "block";
+
     const input1 = document.getElementById("InputTriangulo1").value;
     const input2 = document.getElementById("InputTriangulo2").value;
     const inputBase = document.getElementById("InputTriangulo3").value;    
 
     const perimetro = perimetro3Lados(input1, input2, inputBase);
-    alert(perimetro);
+
+    const resultado = document.getElementById("trianguloPerimetro");
+    resultado.innerText = "The perimeter is: " + perimetro;
 }
 
 function calcularAreaTriangulo(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#trianguloResult");
+    cardFooter.style.display = "block";
+
     const input1 = document.getElementById("InputTriangulo1").value;
     const input2 = document.getElementById("InputTriangulo2").value;
     const inputBase = document.getElementById("InputTriangulo3").value; 
@@ -122,78 +156,134 @@ function calcularAreaTriangulo(){
 
     if (check == "eqis"){
         const area = areaTrianguloEquiIso(input1, inputBase);
-        alert(area);
+
+        const resultado = document.getElementById("trianguloArea");
+        resultado.innerText = "The area is: " + area;
     } else if (check == "rect"){
         const area = areaBaseAlturaEntre2(input2, inputBase);
-        alert(area);
+        
+        const resultado = document.getElementById("trianguloArea");
+        resultado.innerText = "The area is: " + area;
     } else if (check == "otro"){
         const area = areaTrianguloEtc(input1, input2, inputBase);
-        alert(area);
-    } else {
-        alert("Choose the triangle's type");
+        
+        const resultado = document.getElementById("trianguloArea");
+        resultado.innerText = "The area is: " + area;
+    } else if (check != "eqis" | check != "rect" | check != "otro") {
+        alert("Choose any type of triangle"); /* !!! */
     }
 }
 
 // Llamado a rombo
 function calcularPerimetroRombo(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#romboResult_1");
+    cardFooter.style.display = "block";
+
     const input = document.getElementById("InputLado").value;
     
     const perimetro = perimetro4LadosIguales(input);
-    alert(perimetro);
+    
+    const resultado = document.getElementById("romboPerimetro");
+    resultado.innerText = "The perimeter is: " + perimetro;
 }
 function calcularAreaAngulo(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#romboResult_1");
+    cardFooter.style.display = "block";
+
+
     const lado = document.getElementById("InputLado").value;
     const angulo = document.getElementById("InputAngulo").value;
 
     const area = areaRomboAngulo(lado, angulo);
-    alert(area);
+    
+    const resultado = document.getElementById("romboArea_angle");
+    resultado.innerText = "The area is: " + area;
 }
 function calcularAreaDiagonal(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#romboResult_2");
+    cardFooter.style.display = "block";
+
     const d1 = document.getElementById("InputDiagonal1").value;
     const d2 = document.getElementById("InputDiagonal2").value;
 
     const area = areaBaseAlturaEntre2(d1, d2);
-    alert(area);
+    
+    const resultado = document.getElementById("romboArea_diagonals");
+    resultado.innerText = "The area is: " + area;
 }
 
 //Llamando a romboide
 function calcularPerimetroRomboide(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#paralelogramoResult_1");
+    cardFooter.style.display = "block";
+
     const ladoA = document.getElementById("InputLadoA").value;
     const ladoB = document.getElementById("InputLadoB").value;
 
     const perimetro = perimetro4Lados2Iguales(ladoA, ladoB);
-    alert(perimetro);
+    
+    const resultado = document.getElementById("paralelogramoPerimetro");
+    resultado.innerText = "The perimeter is: " + perimetro;
 }
 function calcularAreaAnguloRomboide(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#paralelogramoResult_1");
+    cardFooter.style.display = "block";
+
     const ladoA = document.getElementById("InputLadoA").value;
     const ladoB = document.getElementById("InputLadoB").value; 
     const angulo = document.getElementById("InputAnguloR").value;
 
     const area = areaRomboideAngulo(ladoA, ladoB, angulo);
-    alert(area);
+    
+    const resultado = document.getElementById("paralelogramoArea_angle");
+    resultado.innerText = "The area is: " + area;
 }
 function calcularAreaAlturaRomboide(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#paralelogramoResult_2");
+    cardFooter.style.display = "block";
+
     const ladoA = document.getElementById("InputLadoA").value;
     const altura = document.getElementById("InputAltura").value; 
 
     const area = areaBaseAltura(ladoA, altura);
-    alert(area);
+    
+    const resultado = document.getElementById("paralelogramoArea_height");
+    resultado.innerText = "The area is: " + area;
 }
 
 
 // Llamado a circulo
 function calcularPerimetroCirculo(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#circuloResult");
+    cardFooter.style.display = "block";
+
+    // Logica
     const input = document.getElementById("InputCirculo");
     const valor = input.value;
 
     const perimetro = perimetroCirculo(valor);
-    alert(perimetro);
+
+    const resultado = document.getElementById("circuloPerimetro");
+    resultado.innerText = "The perimeter is: " + perimetro;
 }
 
 function calcularAreaCirculo(){
+    // Pintar el container del resultado
+    const cardFooter = document.querySelector("#circuloResult");
+    cardFooter.style.display = "block";
+
     const input = document.getElementById("InputCirculo");
     const valor = input.value;
 
     const area = areaCirculo(valor);
-    alert(area);
+
+    const resultado = document.getElementById("circuloArea");
+    resultado.innerText = "The area is: " + area;
 }
