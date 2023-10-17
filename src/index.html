@@ -92,7 +92,7 @@
                             <h3>Rectangle</h3>
                         </div>
                         <form class="card_body">
-                            <label>
+                            <label for="InputRect1">
                                 What are the sizes of the edges?
                             </label>
                             <input id="InputRect1" type="number" placeholder="Base"/>
@@ -112,24 +112,20 @@
                             <h3>Triangle</h3>
                         </div>
                         <form class="card_body">
-                            <label>
-                                What is the triangle's type?
-                            </label>
+                            <p>What is the triangle's type?</p>
                             <div class="card_body_option">
-                                <input type="radio" name="check" value="eqis"/>
-                                <span>  Equilateral / Isosceles Triangle </span> 
+                                <input type="radio" name="check" value="eqis" id="equilatero"/>
+                                <label for="equilatero">Equilateral / Isosceles Triangle</label> 
                             </div>
                             <div class="card_body_option">
-                                <input type="radio" name="check" value="rect"/>
-                                <span>Right Triangle</span> 
+                                <input type="radio" name="check" value="rect" id="rectangular"/>
+                                <label for="rectangular">Right Triangle</label> 
                             </div>
                             <div class="card_body_option">
-                                <input type="radio" name="check" value="otro"/>
-                                <span>Other Triangle</span>
+                                <input type="radio" name="check" value="otro" id="triangulo"/>
+                                <label for="triangulo">Other Triangle</label>
                             </div>
-                            <label>
-                                What are the sizes of the edges?
-                            </label>            
+                            <label for="InputTriangulo1">What are the sizes of the edges?</label>            
                             <input id="InputTriangulo1" type="number" placeholder="Side 1"/>
                             <input id="InputTriangulo2" type="number" placeholder="Side 2 or height"/>
                             <input id="InputTriangulo3" type="number" placeholder="Base"/>
@@ -148,7 +144,7 @@
                             <h3>Rhombus</h3>
                         </div>
                         <form class="card_body">
-                            <label>
+                            <label for="InputLado">
                                 What is the size of the edges?
                             </label>
                             <input id="InputLado" type="number" placeholder="Edge"/> 
@@ -177,7 +173,7 @@
                             <h3>Parallelogram</h3>
                         </div>
                         <form class="card_body">
-                            <label>
+                            <label for="InputLadoA">
                                 What are the size of the edges?
                             </label>
                             <input id="InputLadoA" type="number" placeholder="Side A or base"/> 
@@ -313,7 +309,7 @@
         </section>
 
         <div class="modal-dsc" id="modal-discount">
-            <h3>Enter these discount's code</h3>
+            <h3>Enter one of these discount codes</h3>
             
             <div class="dsc_container">
                 <div class="dsc_card">

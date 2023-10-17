@@ -2,14 +2,17 @@
 
 /* --------------- VARIABLES --------------- */
 // COLORES
-$color-green-100: hsl(163, 31%, 85%);
 $color-green-200: hsl(163, 31%, 65%);
 $color-green-500: #58A690;
+
 $color-blue-sky: #5DB8D9;
+$color-blue-sky-100: hsl(196, 62%, 90%);
 $color-blue: #083140;
 $color-palePink: #B18D8A;
 $color-pink: #D95D7A;
-$color-pinkLight: hsl(346, 62%, 75%);
+$color-pink-50: hsl(346, 62%, 95%);
+$color-pink-100: hsl(346, 62%, 90%);
+$color-pink-200: hsl(346, 62%, 75%);
 
 // SOMBRAS
 $shadow-pink-sm: 0 4px 12px 0 rgba(217, 93, 122, 0.5);
@@ -17,8 +20,6 @@ $shadow-pink-lg: 0 8px 24px 0 rgba(217, 93, 122, 0.35);
 $shadow-sky-sm: 0 4px 12px 0 rgba(93, 184, 217, 0.5);
 $shadow-green-sm: 0 4px 12px 0 rgba(132, 191, 180, 0.35);
 $shadow-green-lg: 0 8px 32px 0 rgba(132, 191, 180, 0.35);
-
-// TRANSICION
 
 /* --------------- VARIABLES --------------- */
 
@@ -59,7 +60,7 @@ h2, h3, h4 {
     font-family: 'Martian Mono', monospace;
 }
 a {
-    color: $color-pinkLight;
+    color: $color-pink-200;
     text-decoration: none;
     display: block;
 }
@@ -80,6 +81,59 @@ a {
 /* --------------- CANVAS --------------- */
 
 
+/* --------------- MODALES --------------- */
+// DESCUENTOS
+.modal-dsc {
+    max-width: 100%;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    background-color: rgba($color: $color-blue, $alpha: 0.25);
+    backdrop-filter: blur(6px) grayscale(0.85);
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 10%;
+    text-align: center;
+
+    h3 {
+        color: $color-blue-sky;
+        font-size: 1.6rem;
+        margin-bottom: 2.4rem;
+        text-wrap: balance;
+    }
+    .dsc_container {
+        max-width: 100%;
+        .dsc_card {
+            padding: 16px;
+            margin-bottom: 8px;
+            border: 1px solid $color-blue-sky-100;
+            background-color: rgba($color: $color-blue, $alpha: 0.75);
+            border-radius: 12px;
+            font-size: 1.4rem;
+            color: $color-blue-sky-100;
+        }
+    }
+    button {
+        margin-top: 3.2rem;
+        display: flex;
+        justify-content: center;
+        padding: 1.6rem;
+        width: 50%;
+        border-radius: 8px;
+        border: none;
+        background-color: $color-pink;
+        color: white;
+        cursor: pointer;
+    }
+}
+/* --------------- MODALES --------------- */
+
+
 /* --------------- HEADER --------------- */
 header {
     width: 100%;
@@ -96,28 +150,56 @@ header {
         #menuBtn {
             cursor: pointer;
             background-color: transparent;
+            outline: none;
             border: 2px solid $color-pink;
             border-radius: 8px;
             margin: 16px;
             padding: 12px;
             position: relative;
             backdrop-filter: blur(4px);
+            width: 50px;
+            height: 50px;
 
             #line1, #line2, #line3 {
-                height: 2px;
+                position: absolute;
                 width: 20px;
-                border-radius: 10px;
-                background-color: $color-pink;
+                height: 2px;
+                top: 50%;
+                left: 50%;
+                background: $color-pink;
+                border-radius: 2px;
+                overflow: hidden;
+                transition: all 0.3s linear;
+            }
+            #line1 {
+                animation: span-first-off 0.5s ease-in-out;
+                animation-fill-mode: forwards;
             }
             #line2 {
-                margin-top: 4px;
+                animation: span-second-off 0.5s ease-in-out;
+                animation-fill-mode: forwards;
             }
             #line3 {
-                margin-top: 4px;
+                animation: span-third-off 0.5s ease-in-out;
+                animation-fill-mode: forwards;
                 
             }
             &:hover {
                 box-shadow: $shadow-pink-sm;
+            }
+            &.on {
+                #line1 {
+                    animation: span-first-on 0.5s ease-in-out;
+                    animation-fill-mode: forwards;
+                }
+                #line2 {
+                    animation: span-second-on 0.5s ease-in-out;
+                    animation-fill-mode: forwards;
+                }
+                #line3 {
+                    animation: span-third-on 0.5s ease-in-out;
+                    animation-fill-mode: forwards;
+                }
             }
         }
         #menu {
@@ -131,19 +213,14 @@ header {
             transform-origin: top center;
             
             li {
-                padding: 12px;
-                border-bottom: 1px solid $color-palePink;
-                transition: all 600ms ease-in-out;
+                transition: border color 600ms ease-in-out;
                 a {
+                    padding: 12px;
+                    border-bottom: 1px solid $color-palePink;
                     text-transform: uppercase;
-                    border-radius: 4px;
                     transition: all 300ms ease-in-out;
-                }
-                &:last-of-type {
-                    border-bottom: none;
-                }
-                &:hover {
-                    a {
+                    
+                    &:hover {
                         color: $color-pink;
                     }
                 }
@@ -158,6 +235,7 @@ header {
 main {
     padding-left: 10%;
     padding-right: 10%;
+    background-color: rgba($color: #000000, $alpha: 0.35);
     .section {
         height: 100vh;
         display: flex;
@@ -165,7 +243,7 @@ main {
         justify-content: center;
         
         h1 {
-            font-size: 3.2rem;
+            font-size: 4rem;
             font-weight: 700;
             text-transform: uppercase;
         }
@@ -180,7 +258,7 @@ main {
         }
         h2 {
             font-size: 2.4rem;
-            color: $color-green-500;
+            color: $color-blue-sky;
             text-transform: uppercase;
         }
         .section_container {
@@ -190,7 +268,7 @@ main {
             overflow-x: auto;
 
             .section_container_card {
-                border: 1px solid $color-green-500;
+                border: 1px solid $color-blue-sky;
                 border-radius: 16px;
                 backdrop-filter: blur(4px);
                 background-color: rgba($color: $color-blue, $alpha: 0.35);
@@ -205,7 +283,7 @@ main {
                     
                     h3 {
                         font-size: 2rem;
-                        color: $color-green-500;
+                        color: rgba($color: $color-blue-sky, $alpha: 0.85);
                     }
                 }
 
@@ -213,7 +291,7 @@ main {
                     display: flex;
                     flex-direction: column;
                     gap: 0.8rem;
-                    color: $color-green-100;
+                    color: $color-blue-sky-100;
                     font-size: 1.4rem;
 
                     .card_body_option {
@@ -228,10 +306,10 @@ main {
                             border-radius: 50%;
                             min-width: 15px;
                             height: 15px;
-                            border: 1px solid $color-green-100;
+                            border: 1px solid $color-blue-sky;
                             &:checked {
-                                background-color: $color-pinkLight;
-                                border-color: $color-palePink;
+                                background-color: $color-pink;
+                                border-color: $color-pink;
                             }
                         }
                         &:last-of-type {
@@ -284,8 +362,8 @@ main {
                     text-align: center;
                     border-radius: 8px;
                     border: 1px solid $color-pink;
-                    background: rgba($color: $color-palePink, $alpha: 0.15);
-                    color: hsl(346, 62%, 95%);
+                    background: rgba($color: $color-pink, $alpha: 0.1);
+                    color: $color-pink-50;
                     display: none;
                     font-size: 1.4rem;
 
@@ -297,11 +375,14 @@ main {
                 }
 
                 &:hover {
-                    border-color: #D95D7A;
+                    border-color: $color-pink;
                     box-shadow: $shadow-pink-lg;
 
                     h3 {
                         color: $color-pink;
+                    }
+                    .card_body {
+                        color: $color-pink-50;
                     }
                     button {
                         opacity: 1;
@@ -325,55 +406,6 @@ main {
             }
         }
     }
-
-    // MODAL
-    .modal-dsc {
-        max-width: 100%;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        background-color: rgba($color: $color-blue, $alpha: 0.65);
-        backdrop-filter: blur(4px);
-        width: 100vw;
-        height: 100vh;
-        display: none;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 0 10%;
-        text-align: center;
-
-        h3 {
-            color: $color-green-200;
-            font-size: 1.6rem;
-            margin-bottom: 2.4rem;
-            text-wrap: balance;
-        }
-        .dsc_container {
-            max-width: 100%;
-            .dsc_card {
-                padding: 16px;
-                margin-bottom: 8px;
-                border: 1px solid $color-green-100;
-                border-radius: 12px;
-                font-size: 1.4rem;
-                color: $color-green-100;
-            }
-        }
-        button {
-            margin-top: 3.2rem;
-            display: flex;
-            justify-content: center;
-            padding: 1.6rem;
-            width: 50%;
-            border-radius: 8px;
-            border: none;
-            background-color: $color-pink;
-            color: white;
-            cursor: pointer;
-        }
-    }
 }
 /* --------------- SECCIONES --------------- */
 
@@ -382,8 +414,9 @@ main {
 footer {
     text-align: center;
     font-size: 1.2rem;
-    color: rgba($color: $color-pinkLight, $alpha: 0.65);
+    color: rgba($color: $color-pink-100, $alpha: 1);
     padding: 2rem;
+    background-color: rgba($color: #000000, $alpha: 0.35);
 
     p {
         font-weight: 200;
@@ -410,30 +443,6 @@ footer {
 /* --------------- FOOTER --------------- */
 
 
-/* --------------- ANIMACIONES --------------- */
-@keyframes blink {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-}
-
-@keyframes borderBlink {
-    0% { border-bottom: 2px solid rgba($color:white, $alpha: 0.5); }
-    50% { border-bottom: none; }
-    100% { border-bottom: 2px solid rgba($color:white, $alpha: 0.5); }
-}
-
-@keyframes growDown {
-    0% {
-        transform: scaleY(0)
-    }
-    100% {
-        transform: scaleY(1)
-    }
-}
-/* --------------- ANIMACIONES --------------- */
-
-
 /* --------------- MEDIA QUERIES --------------- */
 // TABLET
 @media (min-width: 600px) {
@@ -450,11 +459,13 @@ footer {
                 li {
                     padding: 12px;
                     border-bottom: none;
-                    &:hover, &:active {
-                        animation: borderBlink 700ms linear;
-                        animation-iteration-count: infinite;
-                        a {
-                            color: white;
+                    
+                    a {
+                        color: $color-pink-100;
+
+                        &:hover, &:active {
+                            animation: borderBlink 700ms linear;
+                            animation-iteration-count: infinite;
                         }
                     }
                 }
@@ -533,3 +544,101 @@ footer {
     }
 }
 /* --------------- MEDIA QUERIES --------------- */
+
+
+/* --------------- ANIMACIONES --------------- */
+@keyframes blink {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes borderBlink {
+    0% {  }
+    50% { border-bottom: none; }
+    100% {  }
+}
+
+@keyframes growDown {
+    0% {
+        transform: scaleY(0)
+    }
+    100% {
+        transform: scaleY(1)
+    }
+}
+
+@keyframes span-first-on {
+    0% {
+        transform: translate(-50%, -300%)
+    }
+    30% {
+        transform: translate(-50%, -50%)
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(-45deg)
+    }
+}
+@keyframes span-first-off {
+    0% {
+        transform: translate(-50%, -50%) rotate(-45deg)
+    }
+    30% {
+        transform: translate(-50%, -50%) rotate(0deg)
+    }
+    100% {
+        transform: translate(-50%, -300%)
+    }
+}  
+@keyframes span-second-on {
+    0% {
+        transform: translate(-50%, -50%)
+    }
+    25% {
+        background: #fff
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1)
+    }
+    100% {
+        transform: translate(-150%, -50%) scale(0)
+    }
+}
+@keyframes span-second-off {
+    0% {
+        transform: translate(-150%, -50%) scale(0)
+    }
+    25% {
+        background: #fff
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1)
+    }
+    100% {
+        transform: translate(-50%, -50%)
+    }
+}
+@keyframes span-third-on {
+    0% {
+        transform: translate(-50%, 200%)
+    }
+    30% {
+        transform: translate(-50%, -50%)
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg)
+    }
+}
+@keyframes span-third-off {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg)
+    }
+    30% {
+        transform: translate(-50%, -50%) rotate(0deg)
+    }
+    100% {
+        transform: translate(-50%, 200%)
+    }
+}
+  
+/* --------------- ANIMACIONES --------------- */

@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 /* ------------------------------ TOGGLE ------------------------------ */
 document.addEventListener("DOMContentLoaded", function() {
-    // MENU
+    // MENU DESPLEGABLE
     const menuBtn = document.getElementById("menuBtn")
     const menu = document.getElementById("menu")
     const menuItem = document.getElementsByClassName("menu_item")
@@ -48,6 +48,11 @@ document.addEventListener("DOMContentLoaded", function() {
         isMenuVisible = !isMenuVisible
     })
 
+    // MENU & CLOSE
+    menuBtn.addEventListener('click', function() {
+        if (this.className == 'on') this.classList.remove('on');
+        else this.classList.add('on');
+    });
     
     // MODAL DESCUENTO
     const openModalBtn  = document.getElementById("modal-open")
