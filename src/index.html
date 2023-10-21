@@ -16,13 +16,15 @@
 <body>
     <canvas class="webgl"></canvas>
 
-    <header>
+    <header id="header">
         <nav>
-            <button id="menuBtn" aria-label="menu">
-                <div id="line1"></div>
-                <div id="line2"></div>
-                <div id="line3"></div>
-            </button>
+            <div id="SectionMenuBtn">
+                <button id="menuBtn" aria-label="menu">
+                    <div id="line1"></div>
+                    <div id="line2"></div>
+                    <div id="line3"></div>
+                </button>
+            </div>
             <ul id="menu" class="hidden">
                 <li>
                     <a href="#1" class="menu_item">Home</a>
@@ -40,7 +42,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main">
         <section class="section" id="1">
             <h1>Math.Robot</h1>
             <p class="subtitle">Calculate easier with me<strong>_</strong> </p>
@@ -308,33 +310,35 @@
             </div>
         </section>
 
-        <div class="modal-dsc" id="modal-discount">
-            <h3>Enter one of these discount codes</h3>
-            
-            <div class="dsc_container">
-                <div class="dsc_card">
-                    <h4>SPRING_DSC</h4>
-                    <p>15%</p>
+        <div class="container-modal" id="modal-discount">
+            <div class="modal-dsc">
+                <h3>Enter one of these discount codes</h3>
+                
+                <div class="dsc_container">
+                    <div class="dsc_card">
+                        <h4>SPRING_DSC</h4>
+                        <p>15%</p>
+                    </div>
+                    <div class="dsc_card">
+                        <h4>SUMMER_DSC</h4>
+                        <p>10%</p>
+                    </div>
+                    <div class="dsc_card">
+                        <h4>INDEPENDENCEDAY_DSC</h4>
+                        <p>30%</p>
+                    </div>
+                    <div class="dsc_card">
+                        <h4>BLACKFRIDAY_DSC</h4>
+                        <p>75%</p>
+                    </div>
+                    <div class="dsc_card">
+                        <h4>XMASS_DSC</h4>
+                        <p>25%</p>
+                    </div>
                 </div>
-                <div class="dsc_card">
-                    <h4>SUMMER_DSC</h4>
-                    <p>10%</p>
-                </div>
-                <div class="dsc_card">
-                    <h4>INDEPENDENCEDAY_DSC</h4>
-                    <p>30%</p>
-                </div>
-                <div class="dsc_card">
-                    <h4>BLACKFRIDAY_DSC</h4>
-                    <p>75%</p>
-                </div>
-                <div class="dsc_card">
-                    <h4>XMASS_DSC</h4>
-                    <p>25%</p>
-                </div>
+                
+                <button type="button" id="modal-close">CLOSE</button>
             </div>
-            
-            <button type="button" id="modal-close">CLOSE</button>
         </div>
     </main>
 

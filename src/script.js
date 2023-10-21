@@ -1,27 +1,26 @@
 /* ------------------------------ SCROLL DELAY ------------------------------ */
 document.addEventListener("DOMContentLoaded", function() {
-    // Obtén todos los enlaces de navegación interna en la página
     const links = document.querySelectorAll("a[href^='#']");
 
-    // Manejador de clic para cada enlace
     links.forEach(link => {
         link.addEventListener("click", function(e) {
-            e.preventDefault(); // Evita que el enlace funcione normalmente
+            e.preventDefault(); // EVITA REFRESCAR
 
-            const targetId = this.getAttribute("href").substring(1); // Obtiene el ID del objetivo
-            const targetElement = document.getElementById(targetId); // Encuentra el elemento de destino
+            // OBTIENE ID Y  ELEMENTO OBJETIVO
+            const targetId = this.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
 
             if (targetElement) {
-                // Calcula la posición del elemento de destino
+                // CALCULA DISTANCIA AL OBJETIVO
                 const offsetTop = targetElement.getBoundingClientRect().top + window.scrollY;
 
-                // Desplaza suavemente a la posición del elemento de destino con una transición de 300ms
+                // DESPLAZA SMOOTH
                 window.scrollTo({
                     top: offsetTop,
                     behavior: "smooth"
                 });
 
-                // Agrega la clase 'active' al enlace actual y quita 'active' de los demás enlaces
+                // AGREGA / QUITA CLASE 'active'
                 links.forEach(l => l.classList.remove("active"));
                 this.classList.add("active");
             }
@@ -34,24 +33,32 @@ document.addEventListener("DOMContentLoaded", function() {
 /* ------------------------------ TOGGLE ------------------------------ */
 document.addEventListener("DOMContentLoaded", function() {
     // MENU DESPLEGABLE
+    const menuBtnSection = document.getElementById("SectionMenuBtn")
     const menuBtn = document.getElementById("menuBtn")
     const menu = document.getElementById("menu")
-    const menuItem = document.getElementsByClassName("menu_item")
-    let isMenuVisible = false
+    const header = document.getElementById("header")
+    const main = document.getElementById("main")
 
     menuBtn.addEventListener("click", function() {
-        if (isMenuVisible) {
-            menu.classList.add("hidden")
-        } else {
+        if (menu.className == 'hidden') {
             menu.classList.remove("hidden")
+        } else {
+            menu.classList.add("hidden")
         }
-        isMenuVisible = !isMenuVisible
     })
-
     // MENU & CLOSE
     menuBtn.addEventListener('click', function() {
         if (this.className == 'on') this.classList.remove('on');
         else this.classList.add('on');
+    });
+    // MENU & HEADER BACKGROUND
+    menuBtn.addEventListener('click', function() {
+        if (menuBtnSection.className == 'blur') menuBtnSection.classList.remove('blur');
+        else menuBtnSection.classList.add('blur');
+    });    
+    // CLOSE: CLICK FUERA
+    main.addEventListener('click', function() {
+        if (menu.className != 'hidden') menuBtnSection.classList.remove('blur') & menuBtn.classList.remove('on') & menu.classList.add("hidden");
     });
     
     // MODAL DESCUENTO
