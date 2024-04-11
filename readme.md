@@ -9,6 +9,7 @@ Watch this live at:
 HTML
 CSS SASS
 Three JS
+GSAP
 Javascript
 Node JS
 Vite
