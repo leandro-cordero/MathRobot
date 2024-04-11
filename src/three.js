@@ -1,4 +1,7 @@
 import * as THREE from 'three'
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js"
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js"
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js"
 import gsap from 'gsap'
 
 THREE.ColorManagement.enabled = false
@@ -51,6 +54,9 @@ const toonTexture = textureLoader.load("/textures/gradients/3.jpg")
     toonTexture.magFilter = THREE.NearestFilter
 
 // MATERIALES
+const mainMaterialPinkBasic = new THREE.MeshBasicMaterial({
+    color: '#B18D8A',
+})
 const mainMaterialPink = new THREE.MeshToonMaterial({
     color: '#B18D8A',
     gradientMap: toonTexture
@@ -403,6 +409,29 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap
 /* ------------------------------ RENDERER ------------------------------ */
 
 
+/* ------------------------------ POSTPROCESS ------------------------------ */
+const renderTarget = new THREE.WebGLRenderTarget(
+    800,
+    600,
+    {
+        samples: renderer.getPixelRatio() === 1 ? 2 : 0
+    }
+)
+const effectComposer = new EffectComposer(renderer, renderTarget)
+    effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    effectComposer.setSize(sizes.width, sizes.height)
+
+const renderPass = new RenderPass(scene, camera)
+    effectComposer.addPass(renderPass)
+
+// Unreal Bloom
+const unrealBloomPass = new UnrealBloomPass()
+    unrealBloomPass.strength = 0.8
+    unrealBloomPass.radius = 1
+effectComposer.addPass(unrealBloomPass)
+/* ------------------------------ POSTPROCESS ------------------------------ */
+
+
 /* ------------------------------ LISTENERS ------------------------------ */
 // SCROLL
 let scrollY = window.scrollY
@@ -472,7 +501,7 @@ const tick = () =>
     cameraGroup.position.y += (parallaxY - cameraGroup.position.y) * 2 * deltaTime
 
     // Render
-    renderer.render(scene, camera)
+    effectComposer.render()
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick)

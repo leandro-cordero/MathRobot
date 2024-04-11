@@ -1,18 +1,23 @@
+const audio = document.getElementById("myAudio");
+
 //________________________________________
 // PERIMETROS  
 //________________________________________
 // Perimetro con todos los 4 lados iguales (Cuadrado)
 function perimetro4LadosIguales(arista){
+    audio.play()
     return arista * 4;
 }
 
 // Perimetro 4 lados con 2 lados iguales(Rectangulo)
 function perimetro4Lados2Iguales(arista1, arista2){
+    audio.play()
     return (arista1 * 2) + (arista2 * 2);
 }
 
 // Perimetro con todos los 3 lados iguales (Triangulo equilatero)
 function perimetro3Lados(arista1, arista2, base){    
+    audio.play()
     return parseInt(arista1) + parseInt(arista2) + parseInt(base);
 }
 
@@ -22,38 +27,45 @@ function perimetro3Lados(arista1, arista2, base){
 //__________________
 // Area de Cuadrado
 function areaCuadrado(arista){
+    audio.play()
     return arista ** 2;
 }
 
 // Area base x altura (Rectangulo, Paralelogramo)
 function areaBaseAltura(arista1, arista2){
+    audio.play()
     return arista1 * arista2;
 }
 
 // Area base x altura / 2
 function areaBaseAlturaEntre2(base, altura){
+    audio.play()
     return (base * altura) / 2;
 }
 
 // Area de triangulo Equilatero y demas
 function areaTrianguloEquiIso(arista1, base){
     const alturaTriangulo = (Math.sqrt((arista1 ** 2) - ((base / 2)** 2)));
+    audio.play()
     return (base * alturaTriangulo) / 2;
 }
 function areaTrianguloEtc(arista1, arista2, base){
-    const semiper = perimetro3Lados(arista1, arista2, base) / 2;       
+    const semiper = perimetro3Lados(arista1, arista2, base) / 2;      
+    audio.play() 
     return Math.sqrt(semiper * (semiper - arista1) * (semiper - arista2) * (semiper - base));
 }
 
 // Area de Rombo
 function areaRomboAngulo(arista, angulo){
-    const radianes = (angulo * Math.PI) / 180;      
+    const radianes = (angulo * Math.PI) / 180;     
+    audio.play() 
     return arista * arista * Math.sin(radianes);
 }
 
 //Area de Romboide
 function areaRomboideAngulo(arista1, arista2, angulo){
-    const radianes = (angulo * Math.PI) / 180;      
+    const radianes = (angulo * Math.PI) / 180;   
+    audio.play()   
     return arista1 * arista2 * Math.sin(radianes);
 }
 
@@ -63,10 +75,12 @@ const diametroCirculo = (radio) => radio * 2;
 
 function perimetroCirculo(radio){
     const diametro = diametroCirculo(radio);
+    audio.play()
     return diametro * Math.PI;
 }
 
 function areaCirculo(radio){
+    audio.play()
     return (radio ** 2) * Math.PI;
 }
 

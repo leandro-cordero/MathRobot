@@ -7,7 +7,7 @@ function calcularMediaAritmetica(lista){
     for(let i = 0; i < lista.length; i++){
     sumaLista = sumaLista + lista[i];
     } */
-
+    audio.play()
     const sumaLista = lista.reduce(
         function(valorAcumulado = 0, nuevoElemento){
             return valorAcumulado + nuevoElemento;
@@ -82,6 +82,7 @@ function mitadLista(array){
 
 //Añadiendo cantidades al Array del HTML
 function onclickMedia(){
+    audio.play()
     // Pintar el container del resultado
     const cardFooter = document.querySelector("#medianResult");
     cardFooter.style.display = "block";
@@ -115,6 +116,7 @@ function onclickMedia(){
 // MODA
 //____________________
 function onclickModa(){
+    audio.play()
     // Pintar el container del resultado
     const cardFooter = document.querySelector("#modalResult");
     cardFooter.style.display = "block";
