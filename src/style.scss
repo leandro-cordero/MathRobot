@@ -67,6 +67,10 @@ a {
 .hidden {
     display: none;
 }
+.underscore {
+    animation: blink 600ms linear;
+    animation-iteration-count: infinite;
+}
 /* --------------- GLOBALS --------------- */
 
 
@@ -146,6 +150,7 @@ a {
     position: fixed;
     top: 0;
     z-index: 1;
+    opacity: 0;
 
     nav {
         display: flex;
@@ -264,12 +269,7 @@ a {
         }
         .subtitle {
             font-size: 1.8rem;
-            color: hsl(346, 62%, 95%);
-
-            strong {
-                animation: blink 600ms linear;
-                animation-iteration-count: infinite;
-            }
+            color: hsl(346, 62%, 95%);            
         }
         h2 {
             font-size: 2.4rem;

@@ -347,7 +347,7 @@ scene.add(directionalLight, robotLight, generalPointLight_1, generalPointLight_2
 
 /* ------------------------------ PARTICULAS ------------------------------ */
 // CANTIDAD
-const particlesCount = 200
+const particlesCount = 400
 
 // ARRAY de ubicaciones XYZ
 const positions = new Float32Array(particlesCount * 3)
@@ -380,6 +380,15 @@ const particlesMaterial = new THREE.PointsMaterial({
 // Points
 const particles = new THREE.Points(particlesGeometry, particlesMaterial)
 scene.add(particles)
+
+// Animacion
+gsap.from(particles.scale, {
+    duration: 2.5,
+    ease: "power2.inOut",
+    x: "10",
+    y: "10",
+    z: "10"
+})
 
 /* ------------------------------ PARTICULAS ------------------------------ */
 
