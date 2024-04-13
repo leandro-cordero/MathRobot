@@ -71,8 +71,8 @@
                                 What is the size of the radius?
                             </label>
                             <input id="InputCirculo" type="number" placeholder="Radius"/>
-                            <button type="button" onclick="calcularPerimetroCirculo()">PERIMETER</button>
-                            <button type="button" onclick="calcularAreaCirculo()">AREA</button>
+                            <button type="button" onclick="calcularPerimetroCirculo()" class="btn-primary">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaCirculo()" class="btn-primary">AREA</button>
                         </form>
                         <div class="card_footer" id="circuloResult">
                             <p id="circuloPerimetro"></p>
@@ -88,8 +88,8 @@
                         <form class="card_body">
                             <label for="InputCuadrado">What is the size of the edges?</label>
                             <input id="InputCuadrado" type="number" placeholder="Tamaño de aristas" name="edge_lenght"/>
-                            <button type="button" onclick="calcularPerimetroCuadrado()">PERIMETER</button>
-                            <button type="button" onclick="calcularAreaCuadrado()">AREA</button>
+                            <button type="button" onclick="calcularPerimetroCuadrado()" class="btn-primary">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaCuadrado()" class="btn-primary">AREA</button>
                         </form>
                         <div class="card_footer" id="cuadradoResult">
                             <p id="cuadradoPerimetro"></p>
@@ -108,8 +108,8 @@
                             </label>
                             <input id="InputRect1" type="number" placeholder="Base"/>
                             <input id="InputRect2" type="number" placeholder="Height"/>
-                            <button type="button" onclick="calcularPerimetroRectangulo()">PERIMETER</button>
-                            <button type="button" onclick="calcularAreaRectangulo()">AREA</button>
+                            <button type="button" onclick="calcularPerimetroRectangulo()" class="btn-primary">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaRectangulo()" class="btn-primary">AREA</button>
                         </form>
                         <div class="card_footer" id="rectanguloResult">
                             <p id="rectanguloPerimetro"></p>
@@ -140,8 +140,8 @@
                             <input id="InputTriangulo1" type="number" placeholder="Side 1"/>
                             <input id="InputTriangulo2" type="number" placeholder="Side 2 or height"/>
                             <input id="InputTriangulo3" type="number" placeholder="Base"/>
-                            <button type="button" onclick="calcularPerimetroTriangulo()">PERIMETER</button>
-                            <button type="button" onclick="calcularAreaTriangulo()">AREA</button>
+                            <button type="button" onclick="calcularPerimetroTriangulo()" class="btn-primary">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaTriangulo()" class="btn-primary">AREA</button>
                         </form>
                         <div class="card_footer" id="trianguloResult">
                             <p id="trianguloPerimetro"></p>
@@ -160,8 +160,8 @@
                             </label>
                             <input id="InputLado" type="number" placeholder="Edge"/> 
                             <input id="InputAngulo" type="number" placeholder="Angle"/>          
-                            <button type="button" onclick="calcularPerimetroRombo()">PERIMETER</button>
-                            <button type="button" onclick="calcularAreaAngulo()">AREA: edge & angle</button>
+                            <button type="button" onclick="calcularPerimetroRombo()" class="btn-primary">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaAngulo()" class="btn-primary">AREA: edge & angle</button>
 
                             <div class="card_footer" id="romboResult_1">
                                 <p id="romboPerimetro"></p>
@@ -170,7 +170,7 @@
 
                             <input id="InputDiagonal1" type="number" placeholder="Diagonal A"/>   
                             <input id="InputDiagonal2" type="number" placeholder="Diagonal B"/>   
-                            <button type="button" onclick="calcularAreaDiagonal()">AREA: diagonals</button>
+                            <button type="button" onclick="calcularAreaDiagonal()" class="btn-primary">AREA: diagonals</button>
 
                             <div class="card_footer" id="romboResult_2">
                                 <p id="romboArea_diagonals"></p>
@@ -190,8 +190,8 @@
                             <input id="InputLadoA" type="number" placeholder="Side A or base"/> 
                             <input id="InputLadoB" type="number" placeholder="Side B"/>    
                             <input id="InputAnguloR" type="number" placeholder="Angle"/>      
-                            <button type="button" onclick="calcularPerimetroRomboide()">PERIMETER</button>
-                            <button type="button" onclick="calcularAreaAnguloRomboide()">AREA: edge & angle</button>
+                            <button type="button" onclick="calcularPerimetroRomboide()" class="btn-primary">PERIMETER</button>
+                            <button type="button" onclick="calcularAreaAnguloRomboide()" class="btn-primary">AREA: edge & angle</button>
 
                             <div class="card_footer" id="paralelogramoResult_1">
                                 <p id="paralelogramoPerimetro"></p>
@@ -199,7 +199,7 @@
                             </div>
 
                             <input id="InputAltura" type="number" placeholder="Height"/>              
-                            <button type="button" onclick="calcularAreaAlturaRomboide()">AREA: edge & height</button>
+                            <button type="button" onclick="calcularAreaAlturaRomboide()" class="btn-primary">AREA: edge & height</button>
 
                             <div class="card_footer" id="paralelogramoResult_2">
                                 <p id="paralelogramoArea_height"></p>
@@ -236,7 +236,7 @@
                                 </button>
                             </div>
                             
-                            <button type="button" onclick="precioDescontadoCupon()">CALCULATE: Final Ammount</button>
+                            <button type="button" onclick="precioDescontadoCupon()" class="btn-primary">CALCULATE: Final Ammount</button>
                         </form>
                         <div class="card_footer" id="couponResult">
                             <p id="ResultadoCupon"></p>
@@ -253,7 +253,7 @@
                             <label for="InputDescuento">Write the discount percentage</label>
                             <input id="InputDescuento" type="number" placeholder="Discount"/>
                             
-                            <button type="button" onclick="precioDescontado()">CALCULATE: Final Cost</button>
+                            <button type="button" onclick="precioDescontado()" class="btn-primary">CALCULATE: Final Cost</button>
                         </form>
                         <div class="card_footer" id="percentageResult">
                             <p id="Resultado"></p>
@@ -281,8 +281,8 @@
                             <label for="InputNumero1">Write the numbers you need and add them one by one</label>
                             <input id="InputNumero1" type="number" placeholder="New Number"/>
                             
-                            <button type="button" onclick="onclickSumarNumero()">Add number</button>
-                            <button type="button" onclick="onclickMediaAritmetica()">CALCULATE: Arithmetic Median</button>
+                            <button type="button" onclick="onclickSumarNumero()" class="btn-primary">Add number</button>
+                            <button type="button" onclick="onclickMediaAritmetica()" class="btn-primary">CALCULATE: Arithmetic Median</button>
                         </form>
                         <div class="card_footer" id="arithmeticMedianResult">
                             <p id="ResultadoNumerosA"></p>
@@ -297,7 +297,7 @@
                             <label for="InputNumero2">Write the numbers you need</label>
                             <input id="InputNumero2" type="number" placeholder="New Number"/>
                                         
-                            <button type="button" onclick="onclickMedia()">Add & calculate Median</button>
+                            <button type="button" onclick="onclickMedia()" class="btn-primary">Add & calculate Median</button>
                         </form>
                         <div class="card_footer" id="medianResult">
                             <p id="ResultadoNumerosB"></p>
@@ -312,7 +312,7 @@
                             <label for="InputNumero3">Write all the numbers you need with a space " " between</label>
                             <input id="InputNumero3" type="text" placeholder="New Number"/>
                                         
-                            <button type="button" onclick="onclickModa()">CALCULATE: Mode</button>
+                            <button type="button" onclick="onclickModa()" class="btn-primary">CALCULATE: Mode</button>
                         </form>
                         <div class="card_footer" id="modalResult">
                             <p id="ResultadoNumerosC"></p>
@@ -352,7 +352,7 @@
                     </div>
                 </div>
                 
-                <button type="button" id="modal-close">CLOSE</button>
+                <button type="button" id="modal-close" class="btn-primary">CLOSE</button>
             </div>
         </div>
     </main>

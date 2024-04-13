@@ -6,7 +6,7 @@ import { data } from './data'
 gsap.registerPlugin(TextPlugin)
 gsap.registerPlugin(ScrollTrigger)
 
-// HERO
+// MASTER
 let masterTL = gsap.timeline()
 
 // HERO
@@ -15,7 +15,8 @@ let heroTL = gsap.timeline()
 heroTL.to('h1.title span', {
     duration: 2,
     text: data.title,
-    ease: "none"
+    ease: "none",
+    delay: 2,
 })
 heroTL.to('h1.title strong', {
     duration: 0.3,
@@ -24,11 +25,9 @@ heroTL.to('h1.title strong', {
 })
 heroTL.fromTo('#header', {
     opacity: 0,
-    y: -100,
 }, {
     opacity: 1,
-    y: 0,
-    duration: 2,
+    duration: 1.2,
     ease: "power4.out",
 })
 heroTL.to('.subtitle span', {
@@ -39,9 +38,9 @@ heroTL.to('.subtitle span', {
 masterTL.add(heroTL)
 
 // SECTIONS
-let geometryTL = gsap.timeline()
+let sectionsTL = gsap.timeline()
 
-geometryTL.to('#geometrySection h2 span', {
+sectionsTL.to('#geometrySection h2 span', {
     text: data.geometryTitle,
     scrollTrigger: {
         trigger: "#geometrySection",
@@ -50,7 +49,7 @@ geometryTL.to('#geometrySection h2 span', {
         scrub: 1,
     }
 })
-geometryTL.to('#discountsSection h2 span', {
+sectionsTL.to('#discountsSection h2 span', {
     text: data.discountTitle,
     scrollTrigger: {
         trigger: "#discountsSection",
@@ -59,7 +58,7 @@ geometryTL.to('#discountsSection h2 span', {
         scrub: 1,
     }
 })
-geometryTL.to('#averageSection h2 span', {
+sectionsTL.to('#averageSection h2 span', {
     text: data.averagesTitle,
     scrollTrigger: {
         trigger: "#averageSection",

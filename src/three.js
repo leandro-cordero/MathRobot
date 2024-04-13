@@ -154,6 +154,8 @@ const robot = new THREE.Group()
 
 robot.add(robotHead, robotEye1, robotEye2, robotMouth, robotWires, robotWiresBall1, robotWiresBall2, robotEar1, robotEar2)
 
+
+
 // FIG GEOMETRICAS
 const figuras = new THREE.Group()
     // Circulo
@@ -380,17 +382,80 @@ const particlesMaterial = new THREE.PointsMaterial({
 // Points
 const particles = new THREE.Points(particlesGeometry, particlesMaterial)
 scene.add(particles)
+/* ------------------------------ PARTICULAS ------------------------------ */
 
-// Animacion
-gsap.from(particles.scale, {
-    duration: 2.5,
+
+/* ------------------------------ ANIMACION ------------------------------ */
+// Master
+const masterTL = gsap.timeline()
+// Robot
+const robotTL = gsap.timeline()
+robotTL.from(robotEar1.position, {
+    duration: Math.random() / 2,
+    delay: Math.random() / 2,
+    ease: "power2.inOut",
+    x: "-15",
+    y: "-2",
+    z: "-15"
+}, "<")
+robotTL.from(robotEar2.position, {
+    duration: Math.random() / 2,
+    delay: Math.random() / 2,
+    ease: "power2.inOut",
+    x: "3",
+    y: "0",
+    z: "0"
+}, "<")
+robotTL.from(robotEye1.position, {
+    duration: Math.random() / 2,
+    delay: Math.random() / 2,
+    ease: "power2.inOut",
+    x: "-2",
+    y: "1",
+    z: "5"
+}, "<")
+robotTL.from(robotEye2.position, {
+    duration: Math.random() / 2,
+    delay: Math.random() / 2,
+    ease: "power2.inOut",
+    x: "2",
+    y: "1",
+    z: "5"
+}, "<")
+robotTL.from(robotMouth.position, {
+    duration: Math.random() / 2,
+    delay: Math.random() / 2,
+    ease: "power2.inOut",
+    x: "0",
+    y: "-2",
+    z: "3"
+}, "<")
+robotTL.from(robotWiresBall1.position, {
+    duration: Math.random() / 2,
+    delay: Math.random() / 2,
+    ease: "power2.inOut",
+    x: "0",
+    y: "2",
+    z: "-5"
+}, "<")
+robotTL.from(robotWiresBall2.position, {
+    duration: Math.random() / 2,
+    delay: Math.random() / 2,
+    ease: "power2.inOut",
+    x: "1",
+    y: "3",
+    z: "-6"
+}, "<")
+masterTL.add(robotTL)
+// Particulas
+masterTL.from(particles.scale, {
+    duration: 1.2,
     ease: "power2.inOut",
     x: "10",
     y: "10",
     z: "10"
-})
-
-/* ------------------------------ PARTICULAS ------------------------------ */
+}, "2")
+/* ------------------------------ ANIMACION ------------------------------ */
 
 
 /* ------------------------------ CAMARA ------------------------------ */

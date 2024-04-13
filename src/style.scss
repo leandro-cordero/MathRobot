@@ -64,6 +64,21 @@ a {
     text-decoration: none;
     display: block;
 }
+.btn-primary {
+    font-size: 1.4rem;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: $color-pink;
+    color: white;
+    opacity: 0.35;
+    cursor: pointer;
+    transition: background 300ms ease-out;
+
+    &:hover {
+        background: $color-palePink;
+    }
+}
 .hidden {
     display: none;
 }
@@ -125,18 +140,6 @@ a {
                 font-size: 1.4rem;
                 color: $color-blue-sky-100;
             }
-        }
-        button {
-            margin-top: 3.2rem;
-            display: flex;
-            justify-content: center;
-            padding: 1.6rem;
-            width: 50%;
-            border-radius: 8px;
-            border: none;
-            background-color: $color-pink;
-            color: white;
-            cursor: pointer;
         }
     }
 }
@@ -348,16 +351,6 @@ a {
                             outline: 2px solid $color-pink;
                         }
                     }
-                    button {
-                        font-size: 1.4rem;
-                        padding: 12px;
-                        border: none;
-                        border-radius: 8px;
-                        background: $color-pink;
-                        color: white;
-                        opacity: 0.35;
-                        cursor: pointer;
-                    }
                     .card_body_inputbtn {
                         position: relative;
 
@@ -366,7 +359,9 @@ a {
                             top: 12px;
                             right: 8px;
                             background: transparent;
+                            border: none;
                             padding: 0;
+                            cursor: pointer;
                         }
                     }
                 }
