@@ -23,13 +23,14 @@ heroTL.to('h1.title strong', {
     opacity: 0,
     ease: "none"
 })
-heroTL.fromTo('#header', {
+heroTL.fromTo('#menu li', {
     opacity: 0,
 }, {
     opacity: 1,
-    duration: 1.2,
+    duration: 0.3,
+    stagger: 0.15,
     ease: "power4.out",
-})
+}, "2")
 heroTL.to('.subtitle span', {
     duration: 2,
     text: data.subtitle,

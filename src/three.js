@@ -3,7 +3,10 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js"
 import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js"
 import gsap from 'gsap'
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+
+gsap.registerPlugin(ScrollTrigger)
 THREE.ColorManagement.enabled = false
 
 
@@ -33,7 +36,7 @@ window.addEventListener('resize', () =>
 
     // CALCULO PARA RESPONSIVE
     positionX = ((sizes.width / 2) * 2) / (1440 / 2) 
-    robot.position.x = figuras.position.x = descuentos.position.x = promedios.position.x = positionX
+    robot.position.x = positionX
     
     // Update camera
     camera.aspect = sizes.width / sizes.height
@@ -54,9 +57,6 @@ const toonTexture = textureLoader.load("/textures/gradients/3.jpg")
     toonTexture.magFilter = THREE.NearestFilter
 
 // MATERIALES
-const mainMaterialPinkBasic = new THREE.MeshBasicMaterial({
-    color: '#B18D8A',
-})
 const mainMaterialPink = new THREE.MeshToonMaterial({
     color: '#B18D8A',
     gradientMap: toonTexture
@@ -154,168 +154,12 @@ const robot = new THREE.Group()
 
 robot.add(robotHead, robotEye1, robotEye2, robotMouth, robotWires, robotWiresBall1, robotWiresBall2, robotEar1, robotEar2)
 
-
-
-// FIG GEOMETRICAS
-const figuras = new THREE.Group()
-    // Circulo
-    const circulo = new THREE.Mesh(
-        new THREE.CircleGeometry( 0.5, 32 ),
-        accentMaterial
-    )
-        circulo.position.z = 0.5
-    // Cuadrado
-    const cuadrado = new THREE.Mesh(
-        new THREE.PlaneGeometry( 1, 1 ),
-        mainMaterial
-    )
-        cuadrado.rotation.y = Math.PI * -0.33
-        cuadrado.position.x = 0.25
-    // Triangulo
-    const trianguloShape = new THREE.Shape()
-        trianguloShape.moveTo( -0.5, 0 )
-        trianguloShape.lineTo( 0, 1 )
-        trianguloShape.lineTo( 0.5, 0 )
-        trianguloShape.lineTo( 0, 0 )
-
-    const triangulo = new THREE.Mesh(
-        new THREE.ShapeGeometry( trianguloShape ),
-        accentMaterial
-    )
-        triangulo.rotation.y = Math.PI * -0.66
-        triangulo.position.y = -0.5
-        triangulo.position.x = -0.25
-
-figuras.add(circulo, cuadrado, triangulo)
-
-// DESCUENTOS
-const descuentos = new THREE.Group()
-    // Aro 1
-    const aro1 = new THREE.Mesh(
-        new THREE.TorusGeometry( 0.15, 0.1, 16, 100 ),
-        mainMaterial
-    )
-        aro1.position.x = 0.25
-        aro1.position.y = -0.25
-    // Aro 2
-    const aro2 = new THREE.Mesh(
-        new THREE.TorusGeometry( 0.15, 0.1, 16, 100 ),
-        mainMaterial
-    )
-        aro2.position.x = -0.25
-        aro2.position.y = 0.25
-    // Barra
-    const barra = new THREE.Mesh(
-        new THREE.BoxGeometry(0.1, 1, 0.15),
-        mainMaterial
-    )
-    barra.rotation.z = Math.PI * -0.25
-
-descuentos.add(aro1, aro2, barra)
-
-// PROMEDIOS
-const promedios = new THREE.Group()
-    // LINEA
-    class CustomPath extends THREE.Curve {
-
-        constructor( scale = 1 ) {
-            super()
-            this.scale = scale
-        }
-        getPoint( t, optionalTarget = new THREE.Vector3() ) {
-            const tx = t * 3 - 1.5
-            const ty = Math.sin( 2 * Math.PI * t )
-            const tz = 0
-
-            return optionalTarget.set( tx, ty, tz ).multiplyScalar( this.scale )
-        }
-    }
-    const promediosLinePath = new CustomPath( 10 )
-
-    const promediosLine = new THREE.Mesh( 
-        new THREE.TubeGeometry( promediosLinePath, 50, 0.35, 8, false ), 
-        mainMaterial 
-    )
-        promediosLine.scale.set(0.05, 0.025, 0.05)
-        promediosLine.position.y = 0.5
-
-    // BARRA: CONSTANTES
-    const promediosBarWidth = 0.175
-    // BARRA 1
-    const promediosBar1 = new THREE.Mesh(
-        new THREE.BoxGeometry( promediosBarWidth, 0.85, promediosBarWidth ),
-        mainMaterial
-    )
-        promediosBar1.position.y = (promediosBar1.geometry.parameters.height / 2) - 0.5  
-    // BARRA 2
-    const promediosBar2 = new THREE.Mesh(
-        new THREE.BoxGeometry( promediosBarWidth, 1.1, promediosBarWidth ),
-        mainMaterial
-    )
-        promediosBar2.position.x = -0.25
-        promediosBar2.position.y = (promediosBar2.geometry.parameters.height / 2) - 0.5
-    // BARRA 3
-    const promediosBar3 = new THREE.Mesh(
-        new THREE.BoxGeometry( promediosBarWidth, 1.05, promediosBarWidth ),
-        mainMaterial
-    )
-        promediosBar3.position.x = -0.5        
-        promediosBar3.position.y = (promediosBar3.geometry.parameters.height / 2) - 0.5      
-    // BARRA 4
-    const promediosBar4 = new THREE.Mesh(
-        new THREE.BoxGeometry( promediosBarWidth, 0.7, promediosBarWidth ),
-        mainMaterial
-    )
-        promediosBar4.position.x = 0.25
-        promediosBar4.position.y = (promediosBar4.geometry.parameters.height / 2) - 0.5
-    // BARRA 5
-    const promediosBar5 = new THREE.Mesh(
-        new THREE.BoxGeometry( promediosBarWidth, 0.75, promediosBarWidth ),
-        mainMaterial
-    )
-        promediosBar5.position.x = 0.5
-        promediosBar5.position.y = (promediosBar5.geometry.parameters.height / 2) - 0.5
-
-    // ESFERA: CONSTANTES
-    const promediosSphereRadius = 0.05
-    // ESFERA 1
-    const promediosSphere1 = new THREE.Mesh(
-        new THREE.SphereGeometry(promediosSphereRadius, 16, 16),
-        accentMaterial
-    )
-        promediosSphere1.position.y = 0.65
-        promediosSphere1.position.x = -0.15
-    // ESFERA 2
-    const promediosSphere2 = new THREE.Mesh(
-        new THREE.SphereGeometry(promediosSphereRadius, 16, 16),
-        accentMaterial
-    )
-        promediosSphere2.position.y = 0.5
-        promediosSphere2.position.x = -0.75
-    // ESFERA 3
-    const promediosSphere3 = new THREE.Mesh(
-        new THREE.SphereGeometry(promediosSphereRadius, 16, 16),
-        accentMaterial
-    )
-        promediosSphere3.position.y = 0.5
-        promediosSphere3.position.x = 0.75
-
-promedios.add(promediosLine, promediosBar1, promediosBar2, promediosBar3, promediosBar4, promediosBar5, promediosSphere1, promediosSphere2, promediosSphere3)
-
 // POSICIONAMIENTO
-robot.position.y = - objectsDistance * 0
-figuras.position.y = - objectsDistance * 1
-descuentos.position.y = - objectsDistance * 2
-promedios.position.y = - objectsDistance * 3
-    
-robot.position.x = figuras.position.x = descuentos.position.x = promedios.position.x = positionX
-
+robot.position.y = - objectsDistance * 0    
+robot.position.x = positionX
 
 // AÑADIR
-scene.add(robot, figuras, descuentos, promedios)
-
-// ARRAY DE MESHES
-const sectionMeshes = [robot, figuras, descuentos, promedios]
+scene.add(robot)
 /* ------------------------------ GEOMETRIAS ------------------------------ */
 
 
@@ -356,7 +200,7 @@ const positions = new Float32Array(particlesCount * 3)
     // VALORES random de posiciones
     for(let i = 0; i < particlesCount; i++) {
         positions[i * 3 + 0] = (Math.random() - 0.5) * 10
-        positions[i * 3 + 1] = (objectsDistance * 0.5) - Math.random() * objectsDistance * sectionMeshes.length
+        positions[i * 3 + 1] = (objectsDistance * 0.5) - Math.random() * objectsDistance * 4
         positions[i * 3 + 2] = (Math.random() - 0.5) * 10
     }
 
@@ -374,7 +218,6 @@ const particlesMaterial = new THREE.PointsMaterial({
     sizeAttenuation: true,
     color: "#5DB8D9",
     transparent: true,
-    /* alphaMap: particlesTexture_2,  */
     depthWrite: false,
     blending: THREE.AdditiveBlending,
 })
@@ -385,7 +228,125 @@ scene.add(particles)
 /* ------------------------------ PARTICULAS ------------------------------ */
 
 
-/* ------------------------------ ANIMACION ------------------------------ */
+/* ------------------------------ CAMARA ------------------------------ */
+// GRUPO
+const cameraGroup = new THREE.Group()
+scene.add(cameraGroup)
+
+// CAMARA BASE
+const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100)
+camera.position.z = 6
+cameraGroup.add(camera)
+/* ------------------------------ CAMARA ------------------------------ */
+
+
+/* ------------------------------ RENDERER ------------------------------ */
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true
+})
+renderer.outputColorSpace = THREE.LinearSRGBColorSpace
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+renderer.shadowMap.enabled = true
+renderer.shadowMap.type = THREE.PCFSoftShadowMap
+/* ------------------------------ RENDERER ------------------------------ */
+
+
+/* ------------------------------ POSTPROCESS ------------------------------ */
+const renderTarget = new THREE.WebGLRenderTarget(
+    800,
+    600,
+    {
+        samples: renderer.getPixelRatio() === 1 ? 2 : 0
+    }
+)
+const effectComposer = new EffectComposer(renderer, renderTarget)
+    effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    effectComposer.setSize(sizes.width, sizes.height)
+
+const renderPass = new RenderPass(scene, camera)
+    effectComposer.addPass(renderPass)
+
+// Unreal Bloom
+const unrealBloomPass = new UnrealBloomPass()
+    unrealBloomPass.strength = 0.8
+    unrealBloomPass.radius = 1
+effectComposer.addPass(unrealBloomPass)
+/* ------------------------------ POSTPROCESS ------------------------------ */
+
+
+/* ------------------------------ LISTENERS ------------------------------ */
+// SCROLL
+let scrollY = window.scrollY
+let currentSection = 0
+
+window.addEventListener("scroll", () => {
+    scrollY = window.scrollY
+    
+    const newSection = Math.round(scrollY / sizes.height)
+
+    const positionY = Math.min(Math.max((scrollY / 100) * 9, 0), 100)
+
+    if(newSection != currentSection) {
+        currentSection = newSection
+
+        gsap.to(
+            robot.rotation,
+            {
+                duration: 1.5,
+                ease: "power2.inOut",
+                x: "+=6",
+                y: "+=3",
+                z: "+=1.5"
+            }
+        )
+    }
+    gsap.to(robot.position, {
+        y: -(scrollY / 2857 * 9),
+        scrollTrigger: {
+            trigger: "#main",
+            start: "top center",
+            end: "+=300",
+            scrub: 1,
+        }
+    })
+    /* gsap.to(robot.position, {
+        x: - (positionX / 3),
+        scrollTrigger: {
+            trigger: "#heroSection",
+            start: "center +=300",
+            end: "-=200",
+            scrub: 1,
+        }
+    }) */
+    gsap.to(robot.scale, {
+        x: 0.25,
+        y: 0.25,
+        z: 0.25,
+        scrollTrigger: {
+            trigger: "#heroSection",
+            start: "center +=300",
+            end: "-=200",
+            scrub: 1,
+        }
+    })
+})
+
+
+// MOUSE
+const cursor = {}
+cursor.x = 0
+cursor.y = 0
+
+window.addEventListener("mousemove", (event) => {
+    cursor.x = event.clientX / sizes.width - 0.5
+    cursor.y = event.clientY / sizes.height - 0.5
+})
+/* ------------------------------ LISTENERS ------------------------------ */
+
+
+/* ------------------------------ INTRO ANIMATION ------------------------------ */
 // Master
 const masterTL = gsap.timeline()
 // Robot
@@ -447,6 +408,7 @@ robotTL.from(robotWiresBall2.position, {
     z: "-6"
 }, "<")
 masterTL.add(robotTL)
+
 // Particulas
 masterTL.from(particles.scale, {
     duration: 1.2,
@@ -455,95 +417,12 @@ masterTL.from(particles.scale, {
     y: "10",
     z: "10"
 }, "2")
-/* ------------------------------ ANIMACION ------------------------------ */
 
+// Scroll
+let scrollTL = gsap.timeline()
 
-/* ------------------------------ CAMARA ------------------------------ */
-// GRUPO
-const cameraGroup = new THREE.Group()
-scene.add(cameraGroup)
-
-// CAMARA BASE
-const camera = new THREE.PerspectiveCamera(35, sizes.width / sizes.height, 0.1, 100)
-camera.position.z = 6
-cameraGroup.add(camera)
-/* ------------------------------ CAMARA ------------------------------ */
-
-
-/* ------------------------------ RENDERER ------------------------------ */
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    alpha: true
-})
-renderer.outputColorSpace = THREE.LinearSRGBColorSpace
-renderer.setSize(sizes.width, sizes.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-renderer.shadowMap.enabled = true
-renderer.shadowMap.type = THREE.PCFSoftShadowMap
-/* ------------------------------ RENDERER ------------------------------ */
-
-
-/* ------------------------------ POSTPROCESS ------------------------------ */
-const renderTarget = new THREE.WebGLRenderTarget(
-    800,
-    600,
-    {
-        samples: renderer.getPixelRatio() === 1 ? 2 : 0
-    }
-)
-const effectComposer = new EffectComposer(renderer, renderTarget)
-    effectComposer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    effectComposer.setSize(sizes.width, sizes.height)
-
-const renderPass = new RenderPass(scene, camera)
-    effectComposer.addPass(renderPass)
-
-// Unreal Bloom
-const unrealBloomPass = new UnrealBloomPass()
-    unrealBloomPass.strength = 0.8
-    unrealBloomPass.radius = 1
-effectComposer.addPass(unrealBloomPass)
-/* ------------------------------ POSTPROCESS ------------------------------ */
-
-
-/* ------------------------------ LISTENERS ------------------------------ */
-// SCROLL
-let scrollY = window.scrollY
-let currentSection = 0
-
-window.addEventListener("scroll", () => {
-    scrollY = window.scrollY
-
-
-    const newSection = Math.round(scrollY / sizes.height)
-
-    if(newSection != currentSection) {
-        currentSection = newSection
-
-        gsap.to(
-            sectionMeshes[currentSection].rotation,
-            {
-                duration: 1.5,
-                ease: "power2.inOut",
-                x: "+=6",
-                y: "+=3",
-                z: "+=1.5"
-            }
-        )
-    }
-})
-
-
-// MOUSE
-const cursor = {}
-cursor.x = 0
-cursor.y = 0
-
-window.addEventListener("mousemove", (event) => {
-    cursor.x = event.clientX / sizes.width - 0.5
-    cursor.y = event.clientY / sizes.height - 0.5
-})
-/* ------------------------------ LISTENERS ------------------------------ */
+masterTL.add(scrollTL)
+/* ------------------------------ INTRO ANIMATION ------------------------------ */
 
 
 /* ------------------------------ ANIMACIONES ------------------------------ */
@@ -559,12 +438,9 @@ const tick = () =>
 
     const deltaTime = elapsedTime - previousTime
     previousTime = elapsedTime
-
-    // Animacion de Meshes
-    for(const mesh of sectionMeshes) {
-        mesh.rotation.x += deltaTime * 0.1
-        mesh.rotation.y += deltaTime * 0.12
-    }
+    
+    robot.rotation.x += deltaTime * 0.1
+    robot.rotation.y += deltaTime * 0.12
 
     // Posicionamiento Camara
     camera.position.y = - scrollY / sizes.height * objectsDistance

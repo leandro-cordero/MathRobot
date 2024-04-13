@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="./style.scss">
 </head>
-<body>
+<body id="body">
     <canvas class="webgl"></canvas>
 
     <header id="header">
@@ -62,10 +62,10 @@
             <div class="section_maskBox">
                 <div class="section_container">
                     <div class="section_container_card">
-                        <div class="card_header">
-                            <img class="icono_figura" src="icons/circle.png" alt="figura_circulo"/>
-                            <h3>Circle</h3>
+                        <div class="card_canvas">
+                            <canvas class="circle" width="100" height="100"></canvas>
                         </div>
+                        <h3>Circle</h3>
                         <form class="card_body">
                             <label for="InputCirculo">
                                 What is the size of the radius?
@@ -81,13 +81,13 @@
                     </div>
                     
                     <div class="section_container_card">
-                        <div class="card_header">
-                            <img class="icono_figura" src="/icons/cuadrado.png" alt="cuadrado"/>
-                            <h3>Square</h3>
+                        <div class="card_canvas">
+                            <canvas class="square" width="100" height="100"></canvas>
                         </div>
+                        <h3>Square</h3>
                         <form class="card_body">
                             <label for="InputCuadrado">What is the size of the edges?</label>
-                            <input id="InputCuadrado" type="number" placeholder="Tamaño de aristas" name="edge_lenght"/>
+                            <input id="InputCuadrado" type="number" placeholder="Side size" name="edge_lenght"/>
                             <button type="button" onclick="calcularPerimetroCuadrado()" class="btn-primary">PERIMETER</button>
                             <button type="button" onclick="calcularAreaCuadrado()" class="btn-primary">AREA</button>
                         </form>
@@ -98,10 +98,10 @@
                     </div>
         
                     <div class="section_container_card">
-                        <div class="card_header">
-                            <img class="icono_figura" src="icons/rectangular.png" alt="figura_cuadrado"/>
-                            <h3>Rectangle</h3>
+                        <div class="card_canvas">
+                            <canvas class="rectangle" width="100" height="100"></canvas>
                         </div>
+                        <h3>Rectangle</h3>
                         <form class="card_body">
                             <label for="InputRect1">
                                 What are the sizes of the edges?
@@ -118,10 +118,10 @@
                     </div>
         
                     <div class="section_container_card">
-                        <div class="card_header">
-                            <img class="icono_figura" src="icons/triangle.png" alt="figura_triangulo"/>
-                            <h3>Triangle</h3>
+                        <div class="card_canvas">
+                            <canvas class="triangle" width="100" height="100"></canvas>
                         </div>
+                        <h3>Triangle</h3>
                         <form class="card_body">
                             <p>What is the triangle's type?</p>
                             <div class="card_body_option">
@@ -150,10 +150,10 @@
                     </div>
         
                     <div class="section_container_card">
-                        <div class="card_header">
-                            <img class="icono_figura" src="icons/rhombus.png" alt="figura_rombo"/>
-                            <h3>Rhombus</h3>
+                        <div class="card_canvas">
+                            <canvas class="rombus" width="100" height="100"></canvas>
                         </div>
+                        <h3>Rhombus</h3>
                         <form class="card_body">
                             <label for="InputLado">
                                 What is the size of the edges?
@@ -179,10 +179,10 @@
                     </div>
         
                     <div class="section_container_card">
-                        <div class="card_header">
-                            <img class="icono_figura" src="icons/parallelogram.png" alt="figura_paralelogramo"/>
-                            <h3>Parallelogram</h3>
+                        <div class="card_canvas">
+                            <canvas class="paralelogram" width="100" height="100"></canvas>
                         </div>
+                        <h3>Parallelogram</h3>
                         <form class="card_body">
                             <label for="InputLadoA">
                                 What are the size of the edges?
@@ -221,9 +221,10 @@
             <div class="section_maskBox">
                 <div class="section_container">
                     <div class="section_container_card">
-                        <div class="card_header">
-                            <h3>Calculate the final price if you have any store's discount coupon</h3>
+                        <div class="card_canvas">
+                            <canvas class="coupon" width="100" height="100"></canvas>
                         </div>
+                        <h3>Calculate the final price if you have any store's discount coupon</h3>
                         <form class="card_body">
                             <label for="InputPrecio2">Write the total ammount</label>
                             <input id="InputPrecio2" type="number" placeholder="Total ammount"/>
@@ -243,9 +244,10 @@
                         </div>
                     </div>
                     <div class="section_container_card">
-                        <div class="card_header">
-                            <h3>Calculate the final ammount you would have to pay for your product</h3>
+                        <div class="card_canvas">
+                            <canvas class="percentage" width="100" height="100"></canvas>
                         </div>
+                        <h3>Calculate the final ammount you would have to pay for your product</h3>
                         <form class="card_body">
                             <label for="InputPrecio">Write the total cost</label>
                             <input id="InputPrecio" type="number" placeholder="Total ammount"/>
@@ -366,12 +368,12 @@
                     LinkedIn
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="//github.com/LeaCorDav" target="_blank" rel="noopenner noreferrer">
                     <img src="/icons/github.png" alt="github page">
                     Github
                 </a>
-            </li>
+            </li> -->
         </ul>
     </footer>
 
@@ -384,6 +386,14 @@
     <script async type="module" src="./script.js"></script>
     <script type="module" src="./three.js"></script>
     <script type="module" src="./motion.js"></script>
+    <script type="module" src="./components/circle.js"></script>
+    <script type="module" src="./components/square.js"></script>
+    <script type="module" src="./components/rectangle.js"></script>
+    <script type="module" src="./components/triangle.js"></script>
+    <script type="module" src="./components/rombus.js"></script>
+    <script type="module" src="./components/paralelogram.js"></script>
+    <script type="module" src="./components/coupon.js"></script>
+    <script type="module" src="./components/percentage.js"></script>
     <script async src="/js/figuras.js"></script>
     <script async src="/js/descuentos.js"></script>
     <script async src="/js/promedio.js"></script>
